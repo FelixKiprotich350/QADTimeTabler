@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D3A75693-BFB9-4447-B566-26C02CF46804}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>QADTimeTabler</RootNamespace>
+    <AssemblyName>QADTimeTabler</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.21.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\DataManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\DataManager.Designer.cs">
+      <DependentUpon>DataManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\SchoolsDepartments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\SchoolsDepartments.Designer.cs">
+      <DependentUpon>SchoolsDepartments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\UserManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\UserManagement.Designer.cs">
+      <DependentUpon>UserManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cohorts\ManageCohorts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cohorts\ManageCohorts.Designer.cs">
+      <DependentUpon>ManageCohorts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Courses\AddClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Courses\AddClass.Designer.cs">
+      <DependentUpon>AddClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Courses\SelectClassLecturer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Courses\SelectClassLecturer.Designer.cs">
+      <DependentUpon>SelectClassLecturer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Courses\SelectAddCohort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Courses\SelectAddCohort.Designer.cs">
+      <DependentUpon>SelectAddCohort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Courses\ViewClasses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Courses\ViewClasses.Designer.cs">
+      <DependentUpon>ViewClasses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Courses\SelectClassCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Courses\SelectClassCourse.Designer.cs">
+      <DependentUpon>SelectClassCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Courses\ManageCourses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Courses\ManageCourses.Designer.cs">
+      <DependentUpon>ManageCourses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelperClasses\TTGenerator.cs" />
+    <Compile Include="HelperClasses\Population.cs" />
+    <Compile Include="HelperModels\LHLocation.cs" />
+    <Compile Include="HelperModels\PostClass.cs" />
+    <Compile Include="HelperModels\PreClass.cs" />
+    <Compile Include="HelperModels\School.cs" />
+    <Compile Include="HelperModels\Course.cs" />
+    <Compile Include="HelperModels\Department.cs" />
+    <Compile Include="HelperModels\Lecturer.cs" />
+    <Compile Include="HelperModels\LectureHall.cs" />
+    <Compile Include="HelperModels\Cohort.cs" />
+    <Compile Include="HelperModels\Timeslot.cs" />
+    <Compile Include="HelperModels\UserClass.cs" />
+    <Compile Include="HelperClasses\ModelsLists.cs" />
+    <Compile Include="HelperClasses\DatabaseLogic.cs" />
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Preloader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Preloader.Designer.cs">
+      <DependentUpon>Preloader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HowToForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HowToForm.Designer.cs">
+      <DependentUpon>HowToForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LecHalls\ManageRooms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LecHalls\ManageRooms.Designer.cs">
+      <DependentUpon>ManageRooms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lecturers\ManageLecturers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lecturers\ManageLecturers.Designer.cs">
+      <DependentUpon>ManageLecturers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutSoftware.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutSoftware.Designer.cs">
+      <DependentUpon>AboutSoftware.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Timetabling\TimeTablingSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Timetabling\TimeTablingSettings.Designer.cs">
+      <DependentUpon>TimeTablingSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Timetabling\GenerateTimetable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Timetabling\GenerateTimetable.Designer.cs">
+      <DependentUpon>GenerateTimetable.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\DataManager.resx">
+      <DependentUpon>DataManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\SchoolsDepartments.resx">
+      <DependentUpon>SchoolsDepartments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\UserManagement.resx">
+      <DependentUpon>UserManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cohorts\ManageCohorts.resx">
+      <DependentUpon>ManageCohorts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Courses\AddClass.resx">
+      <DependentUpon>AddClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Courses\SelectClassLecturer.resx">
+      <DependentUpon>SelectClassLecturer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Courses\SelectAddCohort.resx">
+      <DependentUpon>SelectAddCohort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Courses\ViewClasses.resx">
+      <DependentUpon>ViewClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Courses\SelectClassCourse.resx">
+      <DependentUpon>SelectClassCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Courses\ManageCourses.resx">
+      <DependentUpon>ManageCourses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Preloader.resx">
+      <DependentUpon>Preloader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HowToForm.resx">
+      <DependentUpon>HowToForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LecHalls\ManageRooms.resx">
+      <DependentUpon>ManageRooms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lecturers\ManageLecturers.resx">
+      <DependentUpon>ManageLecturers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutSoftware.resx">
+      <DependentUpon>AboutSoftware.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Timetabling\TimeTablingSettings.resx">
+      <DependentUpon>TimeTablingSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Timetabling\GenerateTimetable.resx">
+      <DependentUpon>GenerateTimetable.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
