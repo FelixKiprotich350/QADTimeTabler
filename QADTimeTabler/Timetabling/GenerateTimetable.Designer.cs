@@ -52,6 +52,8 @@
             // 
             this.DGV_Display.AllowUserToAddRows = false;
             this.DGV_Display.AllowUserToDeleteRows = false;
+            this.DGV_Display.AllowUserToResizeColumns = false;
+            this.DGV_Display.AllowUserToResizeRows = false;
             this.DGV_Display.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGV_Display.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.DGV_Display.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -69,13 +71,15 @@
             this.Column11});
             this.DGV_Display.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGV_Display.EnableHeadersVisualStyles = false;
-            this.DGV_Display.Location = new System.Drawing.Point(0, 76);
+            this.DGV_Display.Location = new System.Drawing.Point(0, 40);
             this.DGV_Display.Name = "DGV_Display";
             this.DGV_Display.ReadOnly = true;
             this.DGV_Display.RowHeadersVisible = false;
-            this.DGV_Display.Size = new System.Drawing.Size(1167, 422);
+            this.DGV_Display.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DGV_Display.RowTemplate.Height = 20;
+            this.DGV_Display.Size = new System.Drawing.Size(1167, 458);
             this.DGV_Display.TabIndex = 8;
-            //
+            // 
             // Column1
             // 
             this.Column1.HeaderText = "Time";
@@ -150,12 +154,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1167, 76);
+            this.panel1.Size = new System.Drawing.Size(1167, 40);
             this.panel1.TabIndex = 9;
             // 
             // Btn_Export
             // 
-            this.Btn_Export.Location = new System.Drawing.Point(332, 23);
+            this.Btn_Export.Location = new System.Drawing.Point(550, 5);
             this.Btn_Export.Name = "Btn_Export";
             this.Btn_Export.Size = new System.Drawing.Size(91, 30);
             this.Btn_Export.TabIndex = 2;
@@ -164,18 +168,18 @@
             // 
             // Btn_Save
             // 
-            this.Btn_Save.Location = new System.Drawing.Point(191, 23);
+            this.Btn_Save.Location = new System.Drawing.Point(332, 5);
             this.Btn_Save.Name = "Btn_Save";
-            this.Btn_Save.Size = new System.Drawing.Size(101, 30);
+            this.Btn_Save.Size = new System.Drawing.Size(91, 30);
             this.Btn_Save.TabIndex = 1;
             this.Btn_Save.Text = "Save";
             this.Btn_Save.UseVisualStyleBackColor = true;
             // 
             // Btn_Generate
             // 
-            this.Btn_Generate.Location = new System.Drawing.Point(42, 23);
+            this.Btn_Generate.Location = new System.Drawing.Point(114, 5);
             this.Btn_Generate.Name = "Btn_Generate";
-            this.Btn_Generate.Size = new System.Drawing.Size(101, 30);
+            this.Btn_Generate.Size = new System.Drawing.Size(91, 30);
             this.Btn_Generate.TabIndex = 0;
             this.Btn_Generate.Text = "Generate";
             this.Btn_Generate.UseVisualStyleBackColor = true;

@@ -18,7 +18,9 @@ namespace QADTimeTabler.Timetabling
         readonly TTGenerator TGen = new TTGenerator();
         public GenerateTimetable()
         {
+
             InitializeComponent();
+            DGV_Display.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
         }
 
         private void Btn_Generate_Click(object sender, EventArgs e)

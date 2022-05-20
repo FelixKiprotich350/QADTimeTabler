@@ -72,7 +72,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(268, 498);
+            this.groupBox1.Size = new System.Drawing.Size(262, 498);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add cohort";
@@ -88,7 +88,7 @@
             // 
             // Btn_Reset
             // 
-            this.Btn_Reset.Location = new System.Drawing.Point(16, 441);
+            this.Btn_Reset.Location = new System.Drawing.Point(21, 441);
             this.Btn_Reset.Name = "Btn_Reset";
             this.Btn_Reset.Size = new System.Drawing.Size(83, 29);
             this.Btn_Reset.TabIndex = 9;
@@ -98,7 +98,7 @@
             // 
             // Btn_Save
             // 
-            this.Btn_Save.Location = new System.Drawing.Point(169, 441);
+            this.Btn_Save.Location = new System.Drawing.Point(162, 441);
             this.Btn_Save.Name = "Btn_Save";
             this.Btn_Save.Size = new System.Drawing.Size(83, 29);
             this.Btn_Save.TabIndex = 8;
@@ -190,9 +190,9 @@
             this.groupBox2.Controls.Add(this.dataGridView2);
             this.groupBox2.Controls.Add(this.panel1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(268, 0);
+            this.groupBox2.Location = new System.Drawing.Point(262, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(899, 498);
+            this.groupBox2.Size = new System.Drawing.Size(905, 498);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cohorts List";
@@ -214,12 +214,12 @@
             this.Column5});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.EnableHeadersVisualStyles = false;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 94);
+            this.dataGridView2.Location = new System.Drawing.Point(3, 69);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(893, 401);
+            this.dataGridView2.Size = new System.Drawing.Size(899, 426);
             this.dataGridView2.TabIndex = 8;
             // 
             // Column3
@@ -258,12 +258,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 22);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(893, 72);
+            this.panel1.Size = new System.Drawing.Size(899, 47);
             this.panel1.TabIndex = 0;
             // 
             // Btn_ViewAll
             // 
-            this.Btn_ViewAll.Location = new System.Drawing.Point(40, 23);
+            this.Btn_ViewAll.Location = new System.Drawing.Point(31, 10);
             this.Btn_ViewAll.Name = "Btn_ViewAll";
             this.Btn_ViewAll.Size = new System.Drawing.Size(83, 29);
             this.Btn_ViewAll.TabIndex = 9;

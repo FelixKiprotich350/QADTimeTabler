@@ -15,11 +15,17 @@ namespace QADTimeTabler.Cohorts
     public partial class ManageCohorts : Form
     {
         readonly DatabaseLogic db = new DatabaseLogic();
+        readonly Population P = new Population();
         public ManageCohorts()
         {
             InitializeComponent();
+            LoadDepartments();
         }
-
+        private void LoadDepartments()
+        {
+            comboBox1.Items.Clear();
+            comboBox1.Items.AddRange(P.GetStringDepartments().ToArray());
+        }
         private void Btn_Reset_Click(object sender, EventArgs e)
         {
             DataGridView_Groups.Rows.Clear();
@@ -30,6 +36,7 @@ namespace QADTimeTabler.Cohorts
             textBox1.Text = "";
             textBox2.Text = "";
             comboBox1.Text = "";
+            LoadDepartments();
         }
 
         private void Btn_Save_Click(object sender, EventArgs e)
@@ -72,7 +79,7 @@ namespace QADTimeTabler.Cohorts
                 {
                     string ID = R.Cells[0].Value.ToString();
                     Int32.TryParse(R.Cells[0].Value.ToString(),out int count);
-                    com.Parameters["@ID"].Value= textBox1.Text.Trim()+"-"+ID;
+                    com.Parameters["@GroupID"].Value= textBox1.Text.Trim()+"-"+ID;
                     com.Parameters["@ShortCode"].Value= textBox1.Text.Trim();
                     com.Parameters["@Fullname"].Value= textBox2.Text.Trim();
                     com.Parameters["@School"].Value= comboBox1.Text.Trim();

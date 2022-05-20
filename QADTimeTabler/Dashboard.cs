@@ -20,23 +20,23 @@ namespace QADTimeTabler
 {
     public partial class Dashboard : Form
     {
-        
-        
+
+
         public Dashboard()
         {
             Home h = new Home();
             InitializeComponent();
             ShowForm(h);
-         
+
         }
-           
+
         private void Dashboard_Load(object sender, EventArgs e)
         {
         }
 
         private void Dashboard_Shown(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ShowForm(Form c)
@@ -58,9 +58,9 @@ namespace QADTimeTabler
                 c.Dock = DockStyle.Fill;
                 c.Show();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(this,ex.Message,"Message Box",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(this, ex.Message, "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -122,7 +122,7 @@ namespace QADTimeTabler
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AboutSoftware a = new AboutSoftware();
+            AboutBox1 a = new AboutBox1();
             a.ShowDialog(this);
         }
 
@@ -131,13 +131,5 @@ namespace QADTimeTabler
             HowToForm h = new HowToForm();
             h.Show(this);
         }
-
-        private void SoftwareVersionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AboutBox1 a = new AboutBox1();
-            a.ShowDialog(this);
-        }
-
-       
-    }  
+    }
 }
