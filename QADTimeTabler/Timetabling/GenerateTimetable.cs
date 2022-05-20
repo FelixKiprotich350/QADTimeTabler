@@ -63,8 +63,16 @@ namespace QADTimeTabler.Timetabling
                     string[] Sessions = { "A", "B", "C", "D" };
                     foreach (string s in Sessions)
                     {
-                        DGV_Display.Rows.Add(s);
+                        DataGridViewRow rs = new DataGridViewRow();
+                        rs.SetValues(s);
+                        DataGridViewCellStyle ds = new DataGridViewCellStyle();
+                        ds.BackColor = Color.Maroon;
+                        ds.ForeColor = Color.White;
+                        ds.SelectionBackColor = Color.OrangeRed;
+                        rs.DefaultCellStyle = ds;
+                        DGV_Display.Rows.Add(rs);
                         List<PostClass> S_Classes = ModelsLists.PostClasses.Where(n => n.Timeslot.Session == s).ToList();
+                        //ensure all columns are packed no space between rows of the same session same day
                         foreach (PostClass pc in S_Classes)
                         {
 

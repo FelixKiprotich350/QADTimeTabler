@@ -55,7 +55,7 @@
             this.DGV_Display.AllowUserToResizeColumns = false;
             this.DGV_Display.AllowUserToResizeRows = false;
             this.DGV_Display.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGV_Display.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.DGV_Display.BackgroundColor = System.Drawing.Color.White;
             this.DGV_Display.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV_Display.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
