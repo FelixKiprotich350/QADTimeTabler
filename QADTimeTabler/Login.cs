@@ -24,7 +24,7 @@ namespace QADTimeTabler
 
         private void Btn_Exit_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(this,"Do you want to exit?","Message Box",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)==DialogResult.OK)
+            if (MessageBox.Show(this,"Do you want to Exit?","Message Box",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)==DialogResult.OK)
             {
                 ExitProgram();
             }
