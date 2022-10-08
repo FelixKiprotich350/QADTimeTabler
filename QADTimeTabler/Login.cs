@@ -18,8 +18,7 @@ namespace QADTimeTabler
         }
 
         private void Login_Load(object sender, EventArgs e)
-        {
-
+        { 
         }
 
         private void Btn_Exit_Click(object sender, EventArgs e)
