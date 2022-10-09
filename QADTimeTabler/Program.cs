@@ -8,7 +8,10 @@ namespace QADTimeTabler
 {
     internal static class Program
    {
-
+        public static DateTime CurrentDate()
+        {
+            return DateTime.Now;
+        }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

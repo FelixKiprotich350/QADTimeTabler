@@ -48,6 +48,8 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Btn_RefreshDepartments = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView_Schools)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -160,9 +162,9 @@
             // textBox2
             // 
             this.textBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox2.Location = new System.Drawing.Point(68, 68);
+            this.textBox2.Location = new System.Drawing.Point(68, 82);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(240, 26);
+            this.textBox2.Size = new System.Drawing.Size(280, 26);
             this.textBox2.TabIndex = 12;
             // 
             // label3
@@ -184,13 +186,13 @@
             "HOD"});
             this.comboBox2.Location = new System.Drawing.Point(68, 134);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(240, 28);
+            this.comboBox2.Size = new System.Drawing.Size(280, 28);
             this.comboBox2.TabIndex = 10;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 45);
+            this.label1.Location = new System.Drawing.Point(64, 59);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(140, 20);
             this.label1.TabIndex = 9;
@@ -198,6 +200,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.textBox4);
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.Btn_SaveDepartment);
             this.groupBox2.Controls.Add(this.Gridview_Departments);
             this.groupBox2.Controls.Add(this.textBox2);
@@ -215,7 +219,7 @@
             // 
             // Btn_SaveDepartment
             // 
-            this.Btn_SaveDepartment.Location = new System.Drawing.Point(82, 181);
+            this.Btn_SaveDepartment.Location = new System.Drawing.Point(102, 181);
             this.Btn_SaveDepartment.Name = "Btn_SaveDepartment";
             this.Btn_SaveDepartment.Size = new System.Drawing.Size(83, 29);
             this.Btn_SaveDepartment.TabIndex = 14;
@@ -256,7 +260,7 @@
             // 
             // Btn_RefreshDepartments
             // 
-            this.Btn_RefreshDepartments.Location = new System.Drawing.Point(196, 181);
+            this.Btn_RefreshDepartments.Location = new System.Drawing.Point(216, 181);
             this.Btn_RefreshDepartments.Name = "Btn_RefreshDepartments";
             this.Btn_RefreshDepartments.Size = new System.Drawing.Size(83, 29);
             this.Btn_RefreshDepartments.TabIndex = 9;
@@ -264,7 +268,24 @@
             this.Btn_RefreshDepartments.UseVisualStyleBackColor = true;
             this.Btn_RefreshDepartments.Click += new System.EventHandler(this.Btn_RefreshDepartments_Click);
             // 
-            // SchoolsDepartments
+            // textBox4
+            // 
+            this.textBox4.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBox4.Location = new System.Drawing.Point(234, 32);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(114, 26);
+            this.textBox4.TabIndex = 16;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(64, 35);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(136, 20);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Department Code";
+            // 
+            // DataManager
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1167, 498);
@@ -273,7 +294,7 @@
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "SchoolsDepartments";
+            this.Name = "DataManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Manage Users";
             this.groupBox1.ResumeLayout(false);
@@ -308,5 +329,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Button Btn_RefreshSchools;
         private System.Windows.Forms.Button Btn_SaveDepartment;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label5;
     }
 }

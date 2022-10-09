@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using QADTimeTabler.HelperClasses;
+using QADTimeTabler.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,23 +9,24 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Forms; 
 
 namespace QADTimeTabler.Cohorts
 {
     public partial class ManageCohorts : Form
-    {
-        readonly DatabaseLogic db = new DatabaseLogic();
-        readonly Population P = new Population();
+    { 
+        readonly Population P = new Population(); 
         public ManageCohorts()
         {
             InitializeComponent();
             LoadDepartments();
+            Btn_Reset_Click(null, null);
         }
         private void LoadDepartments()
         {
             comboBox1.Items.Clear();
             comboBox1.Items.AddRange(P.GetStringDepartments().ToArray());
+            comboBox1.Items.Add("test");
         }
         private void Btn_Reset_Click(object sender, EventArgs e)
         {
@@ -42,8 +44,7 @@ namespace QADTimeTabler.Cohorts
         private void Btn_Save_Click(object sender, EventArgs e)
         {
             try
-            {
-                MySqlTransaction Tr;
+            { 
                 if (textBox1.Text.Trim() == "")
                 {
                     MessageBox.Show(this, "Enter the CohortCode!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -64,42 +65,33 @@ namespace QADTimeTabler.Cohorts
                     MessageBox.Show(this, "Atleast one Group is required to save the cohorts!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                Tr = con.BeginTransaction();
-                MySqlCommand com = new MySqlCommand("insert into cohorts (GroupID, ShortCode, Fullname,Count,School) values (@GroupID, @ShortCode, @Fullname,@Count,@School)", con,Tr);
-                com.Parameters.Add("@GroupID", MySqlDbType.VarString);
-                com.Parameters.Add("@ShortCode", MySqlDbType.VarString);
-                com.Parameters.Add("@Fullname", MySqlDbType.VarString); 
-                com.Parameters.Add("@School", MySqlDbType.VarString);
-                com.Parameters.Add("@Count", MySqlDbType.Int32);
-                int x = 0;
-                foreach (DataGridViewRow R in DataGridView_Groups.Rows)
+                var db = new TimeDbContext();
+                foreach (DataGridViewRow Row in DataGridView_Groups.Rows)
                 {
-                    string ID = R.Cells[0].Value.ToString();
-                    Int32.TryParse(R.Cells[0].Value.ToString(),out int count);
-                    com.Parameters["@GroupID"].Value= textBox1.Text.Trim()+"-"+ID;
-                    com.Parameters["@ShortCode"].Value= textBox1.Text.Trim();
-                    com.Parameters["@Fullname"].Value= textBox2.Text.Trim();
-                    com.Parameters["@School"].Value= comboBox1.Text.Trim();
-                    com.Parameters["@Count"].Value= count;
-                    int y= com.ExecuteNonQuery();
-                    if (y == 1)
+                    Int32.TryParse(Row.Cells[0].Value.ToString(), out int count);
+                    Cohort c = new Cohort()
                     {
-                        x++;
-                    }
+                        GroupID = Guid.NewGuid().ToString(),
+                        ShortCode = textBox1.Text,
+                        Fullname = textBox2.Text,
+                        School = comboBox1.Text,
+                        TotalCount = count,
+                        Department = comboBox1.Text,
+                        CreationDate = Program.CurrentDate()
+                    };
+                    db.Cohorts.Add(c);
                 }
-                if (x >= DataGridView_Groups.RowCount)
+              
+                if (db.SaveChanges() == DataGridView_Groups.RowCount)
                 {
                     MessageBox.Show(this, "Cohorts saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Tr.Commit();
                     LoadCohorts();
+                    Btn_Reset_Click(null, null);
                 }
                 else
                 {
                     MessageBox.Show(this, "Failed to add the Cohorts", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    Tr.Rollback();
+ 
                 }
             }
             catch (Exception ex)
@@ -112,22 +104,19 @@ namespace QADTimeTabler.Cohorts
         {
             try
             {
+                var db = new TimeDbContext();
                 dataGridView2.Rows.Clear();
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("select * from cohorts", con);
-
-                MySqlDataReader Dr = com.ExecuteReader();
-                if (Dr.HasRows)
+                var list = db.Cohorts.AsNoTracking(); 
+                if (list.Count()>0)
                 {
-                    while (Dr.Read())
+                    foreach (var x in list)
                     {
-                        dataGridView2.Rows.Add(Dr["GroupID"].ToString(), Dr["ShortCode"].ToString(), Dr["Fullname"].ToString(), Dr["Count"].ToString(), Dr["School"].ToString());
+                        dataGridView2.Rows.Add(x.ShortCode, x.Fullname, x.TotalCount, x.School, x.Department);
                     }
                 }
                 else
                 {
-                    MessageBox.Show(this, "No Cohorts found!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this, "No Cohorts found!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

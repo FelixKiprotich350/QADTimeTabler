@@ -114,6 +114,9 @@
     <Compile Include="AppBasics\ClosableTabitem.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cohort.cs" />
+    <Compile Include="Navigation\MenuModule.cs" />
+    <Compile Include="Navigation\ModuleFunction.cs" />
+    <Compile Include="Navigation\ModulesCollection.cs" />
     <Compile Include="UTDbContext.cs" />
     <Page Include="AppBasics\ClosableTabHeader.xaml">
       <SubType>Designer</SubType>

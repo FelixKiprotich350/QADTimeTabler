@@ -43,13 +43,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Btn_ViewAll = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.Btn_ViewAll = new System.Windows.Forms.Button();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Groups)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -109,6 +109,7 @@
             // DataGridView_Groups
             // 
             this.DataGridView_Groups.AllowUserToAddRows = false;
+            this.DataGridView_Groups.AllowUserToDeleteRows = false;
             this.DataGridView_Groups.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridView_Groups.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.DataGridView_Groups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -207,11 +208,11 @@
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column3,
             this.dataGridViewTextBoxColumn1,
             this.Column4,
             this.dataGridViewTextBoxColumn2,
-            this.Column5});
+            this.Column5,
+            this.Column3});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.EnableHeadersVisualStyles = false;
             this.dataGridView2.Location = new System.Drawing.Point(3, 69);
@@ -222,11 +223,24 @@
             this.dataGridView2.Size = new System.Drawing.Size(899, 426);
             this.dataGridView2.TabIndex = 8;
             // 
-            // Column3
+            // panel1
             // 
-            this.Column3.HeaderText = "ID";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.panel1.Controls.Add(this.Btn_ViewAll);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(3, 22);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(899, 47);
+            this.panel1.TabIndex = 0;
+            // 
+            // Btn_ViewAll
+            // 
+            this.Btn_ViewAll.Location = new System.Drawing.Point(62, 10);
+            this.Btn_ViewAll.Name = "Btn_ViewAll";
+            this.Btn_ViewAll.Size = new System.Drawing.Size(83, 29);
+            this.Btn_ViewAll.TabIndex = 9;
+            this.Btn_ViewAll.Text = "View All";
+            this.Btn_ViewAll.UseVisualStyleBackColor = true;
+            this.Btn_ViewAll.Click += new System.EventHandler(this.Btn_ViewAll_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -252,24 +266,11 @@
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
-            // panel1
+            // Column3
             // 
-            this.panel1.Controls.Add(this.Btn_ViewAll);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 22);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(899, 47);
-            this.panel1.TabIndex = 0;
-            // 
-            // Btn_ViewAll
-            // 
-            this.Btn_ViewAll.Location = new System.Drawing.Point(31, 10);
-            this.Btn_ViewAll.Name = "Btn_ViewAll";
-            this.Btn_ViewAll.Size = new System.Drawing.Size(83, 29);
-            this.Btn_ViewAll.TabIndex = 9;
-            this.Btn_ViewAll.Text = "View All";
-            this.Btn_ViewAll.UseVisualStyleBackColor = true;
-            this.Btn_ViewAll.Click += new System.EventHandler(this.Btn_ViewAll_Click);
+            this.Column3.HeaderText = "Department";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // ManageCohorts
             // 
@@ -312,10 +313,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Btn_ViewAll;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

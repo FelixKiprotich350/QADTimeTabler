@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QADTimeTabler.HelperModels;
+using QADTimeTabler.Models;
 
 namespace QADTimeTabler.HelperClasses
 {
@@ -186,11 +187,11 @@ namespace QADTimeTabler.HelperClasses
                     {
                         ModelsLists.CohortsList.Add(new Cohort()
                         {
-                            CohortID = Dr["GroupID"].ToString(),
+                            GroupID = Dr["GroupID"].ToString(),
                             ShortCode = Dr["ShortCode"].ToString(),
-                            Fulllname = Dr["Fullname"].ToString(),
+                            Fullname = Dr["Fullname"].ToString(),
                             School = Dr["School"].ToString(),
-                            Count = Convert.ToInt32(Dr["Count"].ToString())
+                            TotalCount = Convert.ToInt32(Dr["Count"].ToString())
                         }); 
                     }
                 }
@@ -244,7 +245,7 @@ namespace QADTimeTabler.HelperClasses
                 {
                     while (Dr.Read())
                     {
-                        ModelsLists.Departments.Add(new Department() { DepartName = Dr["Department"].ToString(), DepartSchool = Dr["School"].ToString() });
+                        ModelsLists.Departments.Add(new Department() { DepartmentName = Dr["Department"].ToString(), SchoolGuid = Dr["School"].ToString() });
                     }
                 }
                 else
@@ -291,7 +292,7 @@ namespace QADTimeTabler.HelperClasses
             List<string> result = new List<string>() ;
             foreach (var a in ModelsLists.Departments)
             {
-                result.Add(a.DepartName);
+                result.Add(a.DepartmentName);
             }
             return result;
 
@@ -337,7 +338,7 @@ namespace QADTimeTabler.HelperClasses
                     string[] Items = Cohorts.Split(',').Where(g => !string.IsNullOrEmpty(g)).ToArray();
                     foreach (string Item in Items)
                     {
-                        int t = ModelsLists.CohortsList.Where(n => n.CohortID == Item).Count();
+                        int t = ModelsLists.CohortsList.Where(n => n.ShortCode == Item).Count();
                         a += t;
                     }
                 }
@@ -359,9 +360,9 @@ namespace QADTimeTabler.HelperClasses
                     string[] Items = cohorts.Split(',').Where(g => !string.IsNullOrEmpty(g)).ToArray();
                     foreach (string Item in Items)
                     {
-                        if(ModelsLists.CohortsList.Where(q => q.CohortID == Item).Count() > 0)
+                        if(ModelsLists.CohortsList.Where(q => q.ShortCode == Item).Count() > 0)
                         {
-                            Flist.Add(ModelsLists.CohortsList.Where(q => q.CohortID == Item).First());
+                            Flist.Add(ModelsLists.CohortsList.Where(q => q.ShortCode == Item).First());
                         }
                     }
                 }
