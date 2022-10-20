@@ -6,15 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Windows.Forms; 
 using QADTimeTabler.HelperClasses;
+using QADTimeTabler.Models;
 
 namespace QADTimeTabler.Courses
 {
     public partial class ManageCourses : Form
-    {
-        readonly DatabaseLogic db = new DatabaseLogic();
+    { 
         readonly Population P = new Population();
         public ManageCourses()
         {
@@ -51,26 +50,21 @@ namespace QADTimeTabler.Courses
                 {
                     _Cohorts += r.Cells[0].Value.ToString() + ",";
                 }
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("insert into courses (CourseCode, CourseTitle, Department, Cohorts, CourseNature) values (@CourseCode, @CourseTitle, @Department, @Cohorts, @CourseNature)", con);
-                com.Parameters.AddWithValue("@CourseCode", textBox1.Text.Trim());
-                com.Parameters.AddWithValue("@CourseTitle", textBox2.Text.Trim());
-                com.Parameters.AddWithValue("@Department", comboBox1.Text.Trim());
-                com.Parameters.AddWithValue("@Cohorts", _Cohorts);
-                com.Parameters.AddWithValue("@CourseNature", comboBox2.Text.Trim());
-                com.Parameters.Add("@Count", MySqlDbType.Int32);
-                int x = com.ExecuteNonQuery();
-                if (x > 0)
+                var db = new TimeDbContext();
+                Course c = new Course()
                 {
-                    MessageBox.Show(this, "Course saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadCourses();
-                }
-                else
-                {
-                    MessageBox.Show(this, "Failed to add the Course!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
+                    CourseGuid = Guid.NewGuid().ToString(),
+                    CourseCode= textBox1.Text.Trim(),
+                    CourseTitle= textBox2.Text.Trim(),
+                    CourseNature= comboBox2.Text.Trim(),
+                    Department = comboBox1.Text.Trim(),
+                    Cohorts= _Cohorts
+                };
+                db.Courses.Add(c);
+                db.SaveChanges();
+                MessageBox.Show(this, "Course saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadCourses();
+            } 
             catch (Exception ex)
             {
                 MessageBox.Show(this, ex.Message, "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -81,21 +75,19 @@ namespace QADTimeTabler.Courses
         {
             LoadCourses();
         }
+
         void LoadCourses()
         {
             try
             {
                 DataGridView_CourseList.Rows.Clear();
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("select * from courses;", con);
-
-                MySqlDataReader Dr = com.ExecuteReader();
-                if (Dr.HasRows)
+                var db = new TimeDbContext();
+                var items = db.Courses.AsNoTracking().ToList();
+                if (items.Count>0)
                 {
-                    while (Dr.Read())
+                   foreach(var x in items)
                     {
-                        DataGridView_CourseList.Rows.Add(Dr["CourseCode"].ToString(), Dr["CourseTitle"].ToString(), Dr["CourseNature"].ToString(), Dr["Department"].ToString(), Dr["Cohorts"].ToString());
+                        DataGridView_CourseList.Rows.Add(x.CourseCode, x.CourseTitle, x.CourseNature,x.Department, x.Cohorts);
                     }
                 }
                 else

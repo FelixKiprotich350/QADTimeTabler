@@ -14,12 +14,19 @@ using System.Windows.Forms;
 namespace QADTimeTabler.Administration
 {
     public partial class DataManager : Form
-    { 
+    {
+        Population P = new Population();
         public DataManager()
         {
             InitializeComponent();
+            GetComboboxSchools();
         }
 
+        void GetComboboxSchools()
+        {
+            comboBox2.Items.Clear();
+            comboBox2.Items.AddRange(P.GetStringSchools().ToArray());
+        }
         private void Btn_SaveSchool_Click(object sender, EventArgs e)
         {
             try
@@ -46,6 +53,7 @@ namespace QADTimeTabler.Administration
                 int x = db.SaveChanges();
                 MessageBox.Show(this, "School Added Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadSchools();
+                GetComboboxSchools();
             }
             catch (Exception ex)
             {
@@ -71,6 +79,7 @@ namespace QADTimeTabler.Administration
                 var db = new TimeDbContext(); 
                 Department d = new Department
                 {
+                    SchoolGuid=Guid.NewGuid().ToString(),
                     DepartmentGuid = Guid.NewGuid().ToString(),
                     DepartmentCode = textBox4.Text,
                     DepartmentName = textBox2.Text,

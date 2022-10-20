@@ -25,21 +25,19 @@ namespace QADTimeTabler.Courses
         {
             LoadLecturers();
         }
+
         void LoadLecturers()
         {
             try
             {
                 DataGridView_Lecturers.Rows.Clear();
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("select * from lecturers", con);
-
-                MySqlDataReader Dr = com.ExecuteReader();
-                if (Dr.HasRows)
+                var db = new TimeDbContext();
+                var items = db.Lecturers.AsNoTracking().ToList();
+                if (items.Count>0)
                 {
-                    while (Dr.Read())
+                   foreach(var x in items)
                     {
-                        DataGridView_Lecturers.Rows.Add(Dr["lecid"].ToString(), Dr["LecName"].ToString(),Dr["Department"].ToString());
+                        DataGridView_Lecturers.Rows.Add(x.LecturerID, x.LecFullName, x.Department);
                     }
                 }
                 else

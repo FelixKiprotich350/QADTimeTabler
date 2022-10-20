@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using QADTimeTabler.HelperClasses;
+using QADTimeTabler.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,15 +15,20 @@ namespace QADTimeTabler.LecHalls
 {
     public partial class ManageRooms : Form
     {
-        readonly DatabaseLogic db = new DatabaseLogic();
+  
         readonly Population P=new Population();
         public ManageRooms()
         {
             InitializeComponent();
-            comboBox2.Items.Clear();
-            comboBox2.Items.AddRange(P.GetStringLHLocations().ToArray());
+            RefreshLocationCombobox();
         }
          
+        private void RefreshLocationCombobox()
+        {
+            comboBox2.Items.Clear(); 
+            P.ReloadLHLocations();
+            comboBox2.Items.AddRange(P.GetStringLHLocations().ToArray());
+        }
 
         private void Btn_SaveLocation_Click(object sender, EventArgs e)
         {
@@ -38,22 +44,18 @@ namespace QADTimeTabler.LecHalls
                     MessageBox.Show(this, "Select the Location's Description!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("insert into locations (ShortName, Desciption) values (@ShortName, @Desciption)", con);
-                com.Parameters.AddWithValue("@ShortName", textBox2.Text.Trim());
-                com.Parameters.AddWithValue("@Desciption", textBox3.Text.Trim());
-                int x = com.ExecuteNonQuery();
-                if (x >= 0)
+                LHLocation lhl = new LHLocation()
                 {
-                    MessageBox.Show(this, "Location saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadLocations();
-                }
-                else
-                {
-                    MessageBox.Show(this, "Failed to save the Location!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                    LocationGuid = Guid.NewGuid().ToString(),
+                    ShortName = textBox2.Text,
+                    Description = textBox3.Text,
+                };
+                var db = new TimeDbContext();
+                db.LHLocations.Add(lhl);
+                db.SaveChanges();
+                MessageBox.Show(this, "Location saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadLocations();
+                RefreshLocationCombobox();
             }
             catch (Exception ex)
             {
@@ -71,16 +73,13 @@ namespace QADTimeTabler.LecHalls
             try
             {
                 DataGridView_Locations.Rows.Clear();
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("select * from locations", con);
-
-                MySqlDataReader Dr = com.ExecuteReader();
-                if (Dr.HasRows)
+                var db = new TimeDbContext();
+                var items = db.LHLocations.AsNoTracking().ToList();
+                if (items.Count>0)
                 {
-                    while (Dr.Read())
+                    foreach (var x in items)
                     {
-                        DataGridView_Locations.Rows.Add(Dr["ShortName"].ToString(), Dr["Desciption"].ToString());
+                        DataGridView_Locations.Rows.Add(x.ShortName, x.Description);
                     }
                 }
                 else
@@ -118,24 +117,22 @@ namespace QADTimeTabler.LecHalls
                     MessageBox.Show(this, "The capacity must be greater than Zero!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("insert into lecrooms (FullName, ShortName, Location, Nature,Capacity) values (@FullName, @ShortName, @Location, @Nature,@Capacity)", con);
-                com.Parameters.AddWithValue("@FullName", comboBox2.Text.Trim()+"/" + textBox1.Text.Trim());
-                com.Parameters.AddWithValue("@ShortName", textBox1.Text.Trim());
-                com.Parameters.AddWithValue("@Location", comboBox2.Text.Trim());
-                com.Parameters.AddWithValue("@Nature", comboBox1.Text.Trim());
-                com.Parameters.AddWithValue("@Capacity", numericUpDown1.Value);
-                int x = com.ExecuteNonQuery();
-                if (x >= 0)
+                var db = new TimeDbContext();
+                LectureHall lh = new LectureHall()
                 {
-                    MessageBox.Show(this, "Lecture Hall saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadLectureHalls();
-                }
-                else
-                {
-                    MessageBox.Show(this, "Failed to save the Lecture Hall!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                    LHGuid = Guid.NewGuid().ToString(),
+
+                    ShortName = textBox1.Text.Trim(),
+                    FullName = comboBox2.Text.Trim() + "-" + textBox1.Text,
+                    Location = comboBox2.Text.Trim(),
+                    Nature = comboBox1.Text.Trim(),
+                    Capacity = (int)(numericUpDown1.Value),
+
+                };
+                db.LectureHalls.Add(lh);
+                db.SaveChanges();
+                MessageBox.Show(this, "Lecture Hall saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadLectureHalls();
             }
             catch (Exception ex)
             {
@@ -153,16 +150,14 @@ namespace QADTimeTabler.LecHalls
             try
             {
                 DataGridView_LecHalls.Rows.Clear();
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("select * from lecrooms", con);
-
-                MySqlDataReader Dr = com.ExecuteReader();
-                if (Dr.HasRows)
+                var db = new TimeDbContext();
+                var items = db.LectureHalls.AsNoTracking().ToList();
+                if (items.Count>0)
                 {
-                    while (Dr.Read())
+                    foreach (var x in items)
                     {
-                        DataGridView_LecHalls.Rows.Add(Dr["FullName"].ToString(), Dr["ShortName"].ToString(), Dr["Location"].ToString(), Dr["Nature"].ToString(),Dr["Capacity"].ToString());
+                        DataGridView_LecHalls.Rows.Add(x.FullName, x.ShortName, x.Location, x.Nature, x.Capacity);
+
                     }
                 }
                 else

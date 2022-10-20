@@ -19,7 +19,7 @@ namespace QADTimeTabler
         {
             //this.Database.CommandTimeout=10; 
             //Database.Initialize(true);
-            //Database.CreateIfNotExists();
+            Database.CreateIfNotExists();
             Database.Log = s => Debug.WriteLine(s);
             //Database.Log = s => Trace.WriteLine(s); 
         }
@@ -30,5 +30,11 @@ namespace QADTimeTabler
         public DbSet<Cohort> Cohorts { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<LectureHall> LectureHalls { get; set; }
+        public DbSet<LHLocation> LHLocations { get; set; }
+        public DbSet<Lecturer> Lecturers { get; set; } 
+        public DbSet<Course> Courses { get; set; } 
+        public DbSet<ClassObject> ClassObjects { get; set; }  
+        public DbSet<SystemUser> SystemUsers { get; set; } 
     }
 }

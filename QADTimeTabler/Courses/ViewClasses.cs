@@ -29,16 +29,13 @@ namespace QADTimeTabler.Courses
             try
             {
                 DataGridView_Classlist.Rows.Clear();
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("select * from classes;", con);
-
-                MySqlDataReader Dr = com.ExecuteReader();
-                if (Dr.HasRows)
+                var db = new TimeDbContext();
+                var items = db.ClassObjects.AsNoTracking().ToList();
+                if (items.Count>0)
                 {
-                    while (Dr.Read())
+                   foreach(var x in items)
                     {
-                        DataGridView_Classlist.Rows.Add(Dr["CourseCode"].ToString(), Dr["Lecturer"].ToString(), Dr["IsChild"].ToString(), Dr["ParentCourse"].ToString(), Dr["Cohorts"].ToString());
+                        DataGridView_Classlist.Rows.Add(x.CourseCode, x.Lecturer, x.IsChild, x.ParentCourse,x.Cohorts);
                     }
                 }
                 else

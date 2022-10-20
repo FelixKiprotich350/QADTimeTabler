@@ -63,6 +63,7 @@
     <Reference Include="MySql.Data.EntityFramework, Version=8.0.30.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.EntityFramework.8.0.30\lib\net452\MySql.Data.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -85,6 +86,7 @@
     </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -97,6 +99,7 @@
     <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.30\lib\net452\Ubiety.Dns.Core.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
     <Reference Include="ZstdNet, Version=1.4.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.30\lib\net452\ZstdNet.dll</HintPath>
     </Reference>
@@ -176,14 +179,20 @@
     </Compile>
     <Compile Include="HelperClasses\TTGenerator.cs" />
     <Compile Include="HelperClasses\Population.cs" />
-    <Compile Include="HelperModels\LHLocation.cs" />
-    <Compile Include="HelperModels\PostClass.cs" />
-    <Compile Include="HelperModels\PreClass.cs" />
-    <Compile Include="HelperModels\Course.cs" />
-    <Compile Include="HelperModels\Lecturer.cs" />
-    <Compile Include="HelperModels\LectureHall.cs" />
-    <Compile Include="HelperModels\Timeslot.cs" />
-    <Compile Include="HelperModels\UserClass.cs" />
+    <Compile Include="Migrations\202210180822198_M1.cs" />
+    <Compile Include="Migrations\202210180822198_M1.designer.cs">
+      <DependentUpon>202210180822198_M1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\LHLocation.cs" />
+    <Compile Include="Models\PostClass.cs" />
+    <Compile Include="Models\ClassObject.cs" />
+    <Compile Include="Models\PreClass.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Lecturer.cs" />
+    <Compile Include="Models\LectureHall.cs" />
+    <Compile Include="Models\Timeslot.cs" />
+    <Compile Include="Models\SystemUser.cs" />
     <Compile Include="HelperClasses\ModelsLists.cs" />
     <Compile Include="HelperClasses\DatabaseLogic.cs" />
     <Compile Include="Home.cs">
@@ -192,19 +201,6 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202210091721293_M1.cs" />
-    <Compile Include="Migrations\202210091721293_M1.designer.cs">
-      <DependentUpon>202210091721293_M1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202210091752402_M2.cs" />
-    <Compile Include="Migrations\202210091752402_M2.designer.cs">
-      <DependentUpon>202210091752402_M2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202210091817338_M3.cs" />
-    <Compile Include="Migrations\202210091817338_M3.designer.cs">
-      <DependentUpon>202210091817338_M3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\School.cs" />
     <Compile Include="Models\Cohort.cs" />
@@ -298,14 +294,8 @@
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202210091721293_M1.resx">
-      <DependentUpon>202210091721293_M1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202210091752402_M2.resx">
-      <DependentUpon>202210091752402_M2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202210091817338_M3.resx">
-      <DependentUpon>202210091817338_M3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202210180822198_M1.resx">
+      <DependentUpon>202210180822198_M1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Preloader.resx">
       <DependentUpon>Preloader.cs</DependentUpon>
@@ -354,7 +344,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

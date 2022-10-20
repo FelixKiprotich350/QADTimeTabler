@@ -13,21 +13,20 @@ using QADTimeTabler.LecHalls;
 using QADTimeTabler.Timetabling;
 using QADTimeTabler.Courses;
 using QADTimeTabler.Lecturers;
-using QADTimeTabler.HelperClasses;
-using QADTimeTabler.HelperModels;
+using QADTimeTabler.HelperClasses; 
 
 namespace QADTimeTabler
 {
     public partial class Dashboard : Form
     {
 
-
+        Population PP = new Population();
         public Dashboard()
         {
             Home h = new Home();
             InitializeComponent();
             ShowForm(h);
-
+            
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -43,13 +42,14 @@ namespace QADTimeTabler
         {
             try
             {
+                PP.ReloadAllItems();
                 foreach (Form f in this.MdiChildren)
                 {
                     if (f.GetType() == c.GetType())
                     {
-                        f.Activate();
-                        f.BringToFront();
-                        return;
+                        //f.BringToFront();
+                        //f.Activate();
+                        f.Close(); 
                     }
 
                 }

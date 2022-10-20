@@ -32,16 +32,13 @@ namespace QADTimeTabler.Courses
             try
             {
                 DataGridView_CohortsList.Rows.Clear();
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("select * from cohorts", con);
-
-                MySqlDataReader Dr = com.ExecuteReader();
-                if (Dr.HasRows)
+                var db = new TimeDbContext();
+                var items = db.Cohorts.AsNoTracking().ToList();
+                if (items.Count>0)
                 {
-                    while (Dr.Read())
+                    foreach(var x in items)
                     {
-                        DataGridView_CohortsList.Rows.Add(Dr["GroupID"].ToString(), Dr["ShortCode"].ToString(), Dr["Fullname"].ToString(), Dr["Count"].ToString(), Dr["School"].ToString());
+                        DataGridView_CohortsList.Rows.Add(x.GroupID, x.ShortCode, x.Fullname, x.TotalCount, x.School);
                     }
                 }
                 else
@@ -59,9 +56,14 @@ namespace QADTimeTabler.Courses
         {
             foreach (DataGridViewRow r in DataGridView_CohortsList.SelectedRows)
             {
-                MC.GridView_Cohorts.Rows.Add(r.Cells[0].Value.ToString());
+                MC.GridView_Cohorts.Rows.Add(r.Cells[1].Value.ToString());
             }
             this.Close();
+        }
+
+        private void SelectAddCohort_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

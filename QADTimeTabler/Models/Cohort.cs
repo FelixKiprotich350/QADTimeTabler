@@ -10,9 +10,9 @@ namespace QADTimeTabler.Models
 {
     public class Cohort
     {
-        [Key]
-        [MaxLength(100)]
-        public string GroupID { get; set; }
+        [Key] 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int GroupID { get; set; }
         [Required]
         [MaxLength(200)]
         public string ShortCode { get; set; }

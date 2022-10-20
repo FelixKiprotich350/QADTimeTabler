@@ -21,16 +21,15 @@ namespace QADTimeTabler
             DialogResult Canstart = DialogResult.None;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            using(Preloader PreloaderF=new Preloader())
+            using (Preloader PreloaderF = new Preloader())
             {
                 Canstart = PreloaderF.ShowDialog();
-               
+
             }
-            if (Canstart==DialogResult.OK)
+            if (Canstart == DialogResult.OK)
             {
                 Application.Run(new Dashboard());
-            }
-            
+            } 
         }
 
 

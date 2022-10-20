@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Btn_Reset = new System.Windows.Forms.Button();
             this.Btn_Save = new System.Windows.Forms.Button();
@@ -43,13 +45,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.Btn_ViewAll = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Btn_ViewAll = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_Groups)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -59,6 +61,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.Btn_Reset);
             this.groupBox1.Controls.Add(this.Btn_Save);
@@ -76,6 +80,24 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add cohort";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(12, 230);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(240, 28);
+            this.comboBox2.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 207);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 20);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Department";
             // 
             // label1
             // 
@@ -137,7 +159,7 @@
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 215);
+            this.comboBox1.Location = new System.Drawing.Point(12, 169);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(240, 28);
             this.comboBox1.TabIndex = 6;
@@ -145,25 +167,25 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 192);
+            this.label4.Location = new System.Drawing.Point(12, 146);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 20);
+            this.label4.Size = new System.Drawing.Size(58, 20);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Department";
+            this.label4.Text = "School";
             // 
             // textBox2
             // 
             this.textBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox2.Location = new System.Drawing.Point(12, 116);
+            this.textBox2.Location = new System.Drawing.Point(12, 87);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(240, 62);
+            this.textBox2.Size = new System.Drawing.Size(240, 47);
             this.textBox2.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 93);
+            this.label3.Location = new System.Drawing.Point(12, 64);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 20);
             this.label3.TabIndex = 3;
@@ -172,7 +194,7 @@
             // textBox1
             // 
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox1.Location = new System.Drawing.Point(12, 59);
+            this.textBox1.Location = new System.Drawing.Point(87, 25);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(136, 26);
             this.textBox1.TabIndex = 2;
@@ -180,7 +202,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 36);
+            this.label2.Location = new System.Drawing.Point(12, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 20);
             this.label2.TabIndex = 1;
@@ -223,25 +245,6 @@
             this.dataGridView2.Size = new System.Drawing.Size(899, 426);
             this.dataGridView2.TabIndex = 8;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.Btn_ViewAll);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 22);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(899, 47);
-            this.panel1.TabIndex = 0;
-            // 
-            // Btn_ViewAll
-            // 
-            this.Btn_ViewAll.Location = new System.Drawing.Point(62, 10);
-            this.Btn_ViewAll.Name = "Btn_ViewAll";
-            this.Btn_ViewAll.Size = new System.Drawing.Size(83, 29);
-            this.Btn_ViewAll.TabIndex = 9;
-            this.Btn_ViewAll.Text = "View All";
-            this.Btn_ViewAll.UseVisualStyleBackColor = true;
-            this.Btn_ViewAll.Click += new System.EventHandler(this.Btn_ViewAll_Click);
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "ShortCode";
@@ -271,6 +274,25 @@
             this.Column3.HeaderText = "Department";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.Btn_ViewAll);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(3, 22);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(899, 47);
+            this.panel1.TabIndex = 0;
+            // 
+            // Btn_ViewAll
+            // 
+            this.Btn_ViewAll.Location = new System.Drawing.Point(62, 10);
+            this.Btn_ViewAll.Name = "Btn_ViewAll";
+            this.Btn_ViewAll.Size = new System.Drawing.Size(83, 29);
+            this.Btn_ViewAll.TabIndex = 9;
+            this.Btn_ViewAll.Text = "View All";
+            this.Btn_ViewAll.UseVisualStyleBackColor = true;
+            this.Btn_ViewAll.Click += new System.EventHandler(this.Btn_ViewAll_Click);
             // 
             // ManageCohorts
             // 
@@ -318,5 +340,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label5;
     }
 }

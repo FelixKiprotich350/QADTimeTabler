@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QADTimeTabler.HelperClasses;
-using QADTimeTabler.HelperModels;
+using QADTimeTabler.HelperClasses; 
+using QADTimeTabler.Models;
 
 namespace QADTimeTabler.Timetabling
 {
@@ -65,10 +65,12 @@ namespace QADTimeTabler.Timetabling
                     {
                         DataGridViewRow rs = new DataGridViewRow();
                         rs.SetValues(s);
-                        DataGridViewCellStyle ds = new DataGridViewCellStyle();
-                        ds.BackColor = Color.Maroon;
-                        ds.ForeColor = Color.White;
-                        ds.SelectionBackColor = Color.OrangeRed;
+                        DataGridViewCellStyle ds = new DataGridViewCellStyle
+                        {
+                            BackColor = Color.LightGray,
+                            ForeColor = Color.Black,
+                            SelectionBackColor = Color.OrangeRed
+                        };
                         rs.DefaultCellStyle = ds;
                         DGV_Display.Rows.Add(rs);
                         List<PostClass> S_Classes = ModelsLists.PostClasses.Where(n => n.Timeslot.Session == s).ToList();
@@ -100,19 +102,19 @@ namespace QADTimeTabler.Timetabling
             switch (d)
             {
                 case "Monday":
-                    DGV_Display.Rows.Add("",pos.CourseCode, pos.LectureHall.LecHallID + " [" + pos.LectureHall.Capacity + "]");
+                    DGV_Display.Rows.Add("",pos.CourseCode, pos.LectureHall.FullName + " [" + pos.LectureHall.Capacity + "]");
                     break;
                 case "Tuesday":
-                    DGV_Display.Rows.Add("","","", pos.CourseCode, pos.LectureHall.LecHallID + " [" + pos.LectureHall.Capacity + "]");
+                    DGV_Display.Rows.Add("","","", pos.CourseCode, pos.LectureHall.FullName + " [" + pos.LectureHall.Capacity + "]");
                     break;
                 case "Wednesday":
-                    DGV_Display.Rows.Add("","","","","", pos.CourseCode, pos.LectureHall.LecHallID + " [" + pos.LectureHall.Capacity + "]");
+                    DGV_Display.Rows.Add("","","","","", pos.CourseCode, pos.LectureHall.FullName + " [" + pos.LectureHall.Capacity + "]");
                     break;
                 case "Thursday":
-                    DGV_Display.Rows.Add("","","","","","","", pos.CourseCode, pos.LectureHall.LecHallID + " [" + pos.LectureHall.Capacity + "]");
+                    DGV_Display.Rows.Add("","","","","","","", pos.CourseCode, pos.LectureHall.FullName + " [" + pos.LectureHall.Capacity + "]");
                     break;
                 case "Friday":
-                    DGV_Display.Rows.Add("","","","","","","","","", pos.CourseCode, pos.LectureHall.LecHallID + " [" + pos.LectureHall.Capacity + "]");
+                    DGV_Display.Rows.Add("","","","","","","","","", pos.CourseCode, pos.LectureHall.FullName + " [" + pos.LectureHall.Capacity + "]");
                     break;
                 default:
                     break;
@@ -121,6 +123,4 @@ namespace QADTimeTabler.Timetabling
         }
        
     }
-}
-//complete display class function
-//test data
+} 

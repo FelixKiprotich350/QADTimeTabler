@@ -130,6 +130,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Select Cohort";
+            this.Load += new System.EventHandler(this.SelectAddCohort_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_CohortsList)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

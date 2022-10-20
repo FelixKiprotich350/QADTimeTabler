@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using QADTimeTabler.HelperModels;
+using System.Windows.Forms; 
 using QADTimeTabler.Models;
 
 namespace QADTimeTabler.HelperClasses
@@ -69,7 +68,7 @@ namespace QADTimeTabler.HelperClasses
                 int x = 0;
                 foreach (Cohort c in cohorts)
                 {
-                    if (ModelsLists.PostClasses.Where(p => p.Timeslot == T & p.Cohorts.Contains(c.ShortCode)).Count() > 0)
+                    if (ModelsLists.PostClasses.Where(p => p.Timeslot == T & p.Cohorts.Contains(c)).Count() > 0)
                     {
                         final = false;
                         break;

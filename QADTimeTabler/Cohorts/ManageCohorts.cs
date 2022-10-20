@@ -25,8 +25,7 @@ namespace QADTimeTabler.Cohorts
         private void LoadDepartments()
         {
             comboBox1.Items.Clear();
-            comboBox1.Items.AddRange(P.GetStringDepartments().ToArray());
-            comboBox1.Items.Add("test");
+            comboBox1.Items.AddRange(P.GetStringDepartments().ToArray()); 
         }
         private void Btn_Reset_Click(object sender, EventArgs e)
         {
@@ -68,11 +67,11 @@ namespace QADTimeTabler.Cohorts
                 var db = new TimeDbContext();
                 foreach (DataGridViewRow Row in DataGridView_Groups.Rows)
                 {
-                    Int32.TryParse(Row.Cells[0].Value.ToString(), out int count);
+                    Int32.TryParse(Row.Cells[1].Value.ToString(), out int count);
                     Cohort c = new Cohort()
                     {
-                        GroupID = Guid.NewGuid().ToString(),
-                        ShortCode = textBox1.Text,
+                        //GroupID = Guid.NewGuid().ToString(),
+                        ShortCode = textBox1.Text + "-" + Row.Cells[0].Value.ToString(),
                         Fullname = textBox2.Text,
                         School = comboBox1.Text,
                         TotalCount = count,
@@ -81,18 +80,10 @@ namespace QADTimeTabler.Cohorts
                     };
                     db.Cohorts.Add(c);
                 }
-              
-                if (db.SaveChanges() == DataGridView_Groups.RowCount)
-                {
-                    MessageBox.Show(this, "Cohorts saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadCohorts();
-                    Btn_Reset_Click(null, null);
-                }
-                else
-                {
-                    MessageBox.Show(this, "Failed to add the Cohorts", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
- 
-                }
+                db.SaveChanges();
+                MessageBox.Show(this, "Cohorts saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadCohorts();
+                Btn_Reset_Click(null, null);
             }
             catch (Exception ex)
             {
@@ -129,5 +120,7 @@ namespace QADTimeTabler.Cohorts
         {
             LoadCohorts();
         }
+
+     
     }
 }

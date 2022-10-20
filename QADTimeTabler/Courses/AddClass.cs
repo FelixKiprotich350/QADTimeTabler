@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using QADTimeTabler.HelperClasses;
+using QADTimeTabler.Models;
 
 namespace QADTimeTabler.Courses
 {
@@ -59,24 +60,21 @@ namespace QADTimeTabler.Courses
                 {
                     _Cohorts += r.Cells[0].Value.ToString() + ",";
                 }
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("insert into classes (CourseCode, Lecturer, IsChild, ParentCourse, Cohorts) values (@CourseCode, @Lecturer, @IsChild, @ParentCourse, @Cohorts)", con);
-                com.Parameters.AddWithValue("@CourseCode", textBox2.Text.Trim());
-                com.Parameters.AddWithValue("@Lecturer", textBox5.Text.Trim());
-                com.Parameters.AddWithValue("@IsChild", "false");
-                com.Parameters.AddWithValue("@ParentCourse", textBox1.Text.Trim());
-                com.Parameters.AddWithValue("@Cohorts", _Cohorts);
-                int x = com.ExecuteNonQuery();
-                if (x > 0)
+                var db = new TimeDbContext();
+                ClassObject pc = new ClassObject()
                 {
-                    MessageBox.Show(this, "Class saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show(this, "Failed to add the Class!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                    ClassGuid = Guid.NewGuid().ToString(),
+                    CourseCode = textBox2.Text.Trim(),
+                    Lecturer = textBox5.Text.Trim(),
+                    ParentCourse = textBox1.Text.Trim(),
+                    //Cohorts = _Cohorts,
+                    Cohorts = _Cohorts,
+                    IsChild = false
+                };
+                db.ClassObjects.Add(pc);
+                db.SaveChanges();
+                MessageBox.Show(this, "Class saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
             catch (Exception ex)
             {
