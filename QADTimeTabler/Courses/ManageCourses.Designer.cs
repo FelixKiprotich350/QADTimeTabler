@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GridView_Cohorts = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -43,20 +45,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.DataGridView_CourseList = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.Btn_ViewAll = new System.Windows.Forms.Button();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GridView_Cohorts = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.Btn_ViewAll = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView_Cohorts)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_CourseList)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView_Cohorts)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -81,6 +81,31 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add Course";
+            // 
+            // GridView_Cohorts
+            // 
+            this.GridView_Cohorts.AllowUserToAddRows = false;
+            this.GridView_Cohorts.AllowUserToDeleteRows = false;
+            this.GridView_Cohorts.AllowUserToResizeRows = false;
+            this.GridView_Cohorts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.GridView_Cohorts.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.GridView_Cohorts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridView_Cohorts.ColumnHeadersVisible = false;
+            this.GridView_Cohorts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3});
+            this.GridView_Cohorts.EnableHeadersVisualStyles = false;
+            this.GridView_Cohorts.Location = new System.Drawing.Point(12, 300);
+            this.GridView_Cohorts.Name = "GridView_Cohorts";
+            this.GridView_Cohorts.ReadOnly = true;
+            this.GridView_Cohorts.RowHeadersVisible = false;
+            this.GridView_Cohorts.Size = new System.Drawing.Size(150, 186);
+            this.GridView_Cohorts.TabIndex = 18;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Cohort";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // comboBox1
             // 
@@ -227,27 +252,10 @@
             this.DataGridView_CourseList.Name = "DataGridView_CourseList";
             this.DataGridView_CourseList.ReadOnly = true;
             this.DataGridView_CourseList.RowHeadersVisible = false;
+            this.DataGridView_CourseList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridView_CourseList.Size = new System.Drawing.Size(893, 401);
             this.DataGridView_CourseList.TabIndex = 8;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.Btn_ViewAll);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 22);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(893, 72);
-            this.panel1.TabIndex = 0;
-            // 
-            // Btn_ViewAll
-            // 
-            this.Btn_ViewAll.Location = new System.Drawing.Point(25, 25);
-            this.Btn_ViewAll.Name = "Btn_ViewAll";
-            this.Btn_ViewAll.Size = new System.Drawing.Size(87, 29);
-            this.Btn_ViewAll.TabIndex = 10;
-            this.Btn_ViewAll.Text = "View All";
-            this.Btn_ViewAll.UseVisualStyleBackColor = true;
-            this.Btn_ViewAll.Click += new System.EventHandler(this.Btn_ViewAll_Click);
+            this.DataGridView_CourseList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CourseList_CellDoubleClick);
             // 
             // Column3
             // 
@@ -279,30 +287,24 @@
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // GridView_Cohorts
+            // panel1
             // 
-            this.GridView_Cohorts.AllowUserToAddRows = false;
-            this.GridView_Cohorts.AllowUserToDeleteRows = false;
-            this.GridView_Cohorts.AllowUserToResizeRows = false;
-            this.GridView_Cohorts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.GridView_Cohorts.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.GridView_Cohorts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridView_Cohorts.ColumnHeadersVisible = false;
-            this.GridView_Cohorts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3});
-            this.GridView_Cohorts.EnableHeadersVisualStyles = false;
-            this.GridView_Cohorts.Location = new System.Drawing.Point(12, 300);
-            this.GridView_Cohorts.Name = "GridView_Cohorts";
-            this.GridView_Cohorts.ReadOnly = true;
-            this.GridView_Cohorts.RowHeadersVisible = false;
-            this.GridView_Cohorts.Size = new System.Drawing.Size(150, 186);
-            this.GridView_Cohorts.TabIndex = 18;
+            this.panel1.Controls.Add(this.Btn_ViewAll);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(3, 22);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(893, 72);
+            this.panel1.TabIndex = 0;
             // 
-            // dataGridViewTextBoxColumn3
+            // Btn_ViewAll
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Cohort";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.Btn_ViewAll.Location = new System.Drawing.Point(25, 25);
+            this.Btn_ViewAll.Name = "Btn_ViewAll";
+            this.Btn_ViewAll.Size = new System.Drawing.Size(87, 29);
+            this.Btn_ViewAll.TabIndex = 10;
+            this.Btn_ViewAll.Text = "View All";
+            this.Btn_ViewAll.UseVisualStyleBackColor = true;
+            this.Btn_ViewAll.Click += new System.EventHandler(this.Btn_ViewAll_Click);
             // 
             // ManageCourses
             // 
@@ -318,10 +320,10 @@
             this.Text = "Manage Courses";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView_Cohorts)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_CourseList)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GridView_Cohorts)).EndInit();
             this.ResumeLayout(false);
 
         }

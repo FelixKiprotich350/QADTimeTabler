@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class M1 : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -55,12 +55,11 @@
                     {
                         DepartmentGuid = c.String(nullable: false, maxLength: 100, storeType: "nvarchar"),
                         SchoolGuid = c.String(nullable: false, maxLength: 200, storeType: "nvarchar"),
-                        DepartmentCode = c.String(nullable: false, maxLength: 200, storeType: "nvarchar"),
                         DepartmentName = c.String(nullable: false, maxLength: 500, storeType: "nvarchar"),
                         CreationDate = c.DateTime(nullable: false, precision: 0),
                     })
                 .PrimaryKey(t => t.DepartmentGuid)
-                .Index(t => t.DepartmentCode, unique: true);
+                .Index(t => t.DepartmentName, unique: true);
             
             CreateTable(
                 "dbo.LectureHall",
@@ -79,14 +78,16 @@
                 "dbo.Lecturer",
                 c => new
                     {
-                        LecturerGuid = c.String(nullable: false, maxLength: 100, storeType: "nvarchar"),
-                        LecturerID = c.String(nullable: false, maxLength: 100, storeType: "nvarchar"),
+                        AutoID = c.Int(nullable: false, identity: true),
+                        LecGuid = c.String(nullable: false, maxLength: 100, storeType: "nvarchar"),
+                        LecPFNo = c.String(nullable: false, maxLength: 100, storeType: "nvarchar"),
                         LecFullName = c.String(nullable: false, maxLength: 200, storeType: "nvarchar"),
                         Department = c.String(nullable: false, maxLength: 200, storeType: "nvarchar"),
                         Preferences = c.String(nullable: false, maxLength: 500, storeType: "nvarchar"),
                     })
-                .PrimaryKey(t => t.LecturerGuid)
-                .Index(t => t.LecturerID, unique: true);
+                .PrimaryKey(t => t.AutoID)
+                .Index(t => t.LecGuid, unique: true)
+                .Index(t => t.LecPFNo, unique: true);
             
             CreateTable(
                 "dbo.LHLocation",
@@ -108,7 +109,8 @@
                         SchoolName = c.String(nullable: false, maxLength: 500, storeType: "nvarchar"),
                         CreationDate = c.DateTime(nullable: false, precision: 0),
                     })
-                .PrimaryKey(t => t.SchoolGuid);
+                .PrimaryKey(t => t.SchoolGuid)
+                .Index(t => t.SchoolCode, unique: true);
             
             CreateTable(
                 "dbo.SystemUser",
@@ -127,9 +129,11 @@
         
         public override void Down()
         {
+            DropIndex("dbo.School", new[] { "SchoolCode" });
             DropIndex("dbo.LHLocation", new[] { "ShortName" });
-            DropIndex("dbo.Lecturer", new[] { "LecturerID" });
-            DropIndex("dbo.Department", new[] { "DepartmentCode" });
+            DropIndex("dbo.Lecturer", new[] { "LecPFNo" });
+            DropIndex("dbo.Lecturer", new[] { "LecGuid" });
+            DropIndex("dbo.Department", new[] { "DepartmentName" });
             DropIndex("dbo.Course", new[] { "CourseCode" });
             DropIndex("dbo.ClassObject", new[] { "CourseCode" });
             DropTable("dbo.SystemUser");

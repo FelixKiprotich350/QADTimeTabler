@@ -79,6 +79,7 @@
             this.DGV_Display.RowTemplate.Height = 20;
             this.DGV_Display.Size = new System.Drawing.Size(1167, 458);
             this.DGV_Display.TabIndex = 8;
+            this.DGV_Display.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_Display_CellDoubleClick);
             // 
             // Column1
             // 
@@ -165,6 +166,7 @@
             this.Btn_Export.TabIndex = 2;
             this.Btn_Export.Text = "Export";
             this.Btn_Export.UseVisualStyleBackColor = true;
+            this.Btn_Export.Click += new System.EventHandler(this.Btn_Export_Click);
             // 
             // Btn_Save
             // 
@@ -174,6 +176,7 @@
             this.Btn_Save.TabIndex = 1;
             this.Btn_Save.Text = "Save";
             this.Btn_Save.UseVisualStyleBackColor = true;
+            this.Btn_Save.Click += new System.EventHandler(this.Btn_Save_Click);
             // 
             // Btn_Generate
             // 

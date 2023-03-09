@@ -15,7 +15,7 @@ namespace QADTimeTabler.HelperClasses
          
         public Population()
         {
-            ReloadAllItems();
+           // ReloadAllItems();
         }
 
         public void ReloadAllItems()
@@ -46,19 +46,20 @@ namespace QADTimeTabler.HelperClasses
                 var classes = db.ClassObjects.AsNoTracking().ToList();
                 foreach(var a in classes)
                 {
-                    var lec = ModelsLists.Lecturers.Where(b=>b.LecturerID==a.Lecturer).FirstOrDefault();
+                    var lec = ModelsLists.Lecturers.Where(b=>b.LecPFNo==a.Lecturer).FirstOrDefault();
                     var course = ModelsLists.Courses.Where(b=>b.CourseCode==a.CourseCode).FirstOrDefault();
+                    int count=GetCohortsTotalCount(a.Cohorts);
                     PreClass p = new PreClass()
                     {
                         CourseCode = a.CourseCode,
                         IsChild = a.IsChild,
                         ParentCourse = a.ParentCourse,
                         CourseNature = course.CourseNature,
-                        Lecturer = lec.LecturerID,
+                        Lecturer = lec.LecPFNo,
                         LecturerPreferences = lec.Preferences,
                         Cohorts = GetCohortsList(a.Cohorts),
-                        TotalStudents = GetCohortsTotalCount(a.Cohorts),
-                        CoursePriority = GetClassPriority(lec.Preferences, (decimal)GetCohortsTotalCount(a.Cohorts))
+                        TotalStudents = count,
+                        CoursePriority = GetClassPriority(lec.Preferences, count)
 
                     };
                     ModelsLists.Preclasses.Add(p);
@@ -211,7 +212,7 @@ namespace QADTimeTabler.HelperClasses
 
 
         #region Private functions
-        private decimal GetClassPriority(string LecturerPreferences, decimal TotalStudents)
+        private decimal GetClassPriority(string LecturerPreferences, int TotalStudents)
         {
             decimal x = 5;
             decimal y = LecturerPreferences.Split(',').Count(m => !string.IsNullOrEmpty(m));
@@ -220,7 +221,7 @@ namespace QADTimeTabler.HelperClasses
             _Priority = (x - y + 1) * (z / x);
             return _Priority;
         }
-        private int GetCohortsTotalCount(string Cohorts)
+        public int GetCohortsTotalCount(string Cohorts)
         {
             int a = 0;
             try
@@ -230,8 +231,12 @@ namespace QADTimeTabler.HelperClasses
                     string[] Items = Cohorts.Split(',').Where(g => !string.IsNullOrEmpty(g)).ToArray();
                     foreach (string Item in Items)
                     {
-                        int t = ModelsLists.CohortsList.Where(n => n.ShortCode == Item).Count();
-                        a += t;
+                        var x = ModelsLists.CohortsList.Where(n => n.ShortCode == Item).FirstOrDefault();
+                        if (x!=null)
+                        { 
+                            int t = x.TotalCount;
+                            a += t;
+                        }
                     }
                 }
 

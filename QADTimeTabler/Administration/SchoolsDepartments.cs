@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using QADTimeTabler.HelperClasses;
+using QADTimeTabler.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,17 +15,30 @@ namespace QADTimeTabler.Administration
 {
     public partial class SchoolsDepartments : Form
     {
-        readonly DatabaseLogic db = new DatabaseLogic();
         Population P = new Population();
         public SchoolsDepartments()
         {
             InitializeComponent();
-            comboBox2.Items.Clear();
-            comboBox2.Items.AddRange(P.GetStringSchools().ToArray());
-            comboBox1.Items.Clear();
-            comboBox1.Items.AddRange(P.GetStringLHLocations().ToArray());
+            GetComboboxSchools();
         }
 
+        void GetComboboxSchools()
+        {
+            try
+            {
+                List<School> departments = new List<School>();
+                TimeDbContext db = new TimeDbContext();
+                comboBox2.DataSource = new BindingSource() { DataSource = db.Schools.AsNoTracking().ToList() };
+                comboBox2.DisplayMember = "SchoolName";
+                comboBox2.ValueMember = "SchoolCode";
+                comboBox2.SelectedItem = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Messsage Box", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+        }
         private void Btn_SaveSchool_Click(object sender, EventArgs e)
         {
             try
@@ -39,22 +53,19 @@ namespace QADTimeTabler.Administration
                     MessageBox.Show(this, "Enter the School Name!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("insert into schools (SchoolName,Code) values (@SchoolName, @Code)", con);
-
-                com.Parameters.AddWithValue("@SchoolName", textBox1.Text.Trim());
-                com.Parameters.AddWithValue("@Code", textBox3.Text.Trim());
-                int x = com.ExecuteNonQuery();
-                if (x>=0)
+                var db = new TimeDbContext();
+                School s = new School()
                 {
-                    MessageBox.Show(this,"School saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadSchools();
-                }
-                else
-                {
-                    MessageBox.Show(this,"Failed to add the School!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                    SchoolGuid = Guid.NewGuid().ToString(),
+                    SchoolCode = textBox1.Text,
+                    SchoolName = textBox3.Text,
+                    CreationDate = Program.CurrentDate()
+                };
+                db.Schools.Add(s);
+                int x = db.SaveChanges();
+                MessageBox.Show(this, "School Added Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadSchools();
+                GetComboboxSchools();
             }
             catch (Exception ex)
             {
@@ -66,7 +77,6 @@ namespace QADTimeTabler.Administration
         {
             try
             {
-                
                 if (textBox2.Text.Trim() == "")
                 {
                     MessageBox.Show(this, "Enter the Department Name!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -78,28 +88,25 @@ namespace QADTimeTabler.Administration
                     MessageBox.Show(this, "Select the School!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (comboBox1.Text.Trim() == "")
+                if (comboBox2.SelectedItem == null)
                 {
-                    MessageBox.Show(this, "Select the Priority Location!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this, "Select the Department!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("insert into departments (Department,School,PriorityLocation) values (@Department, @School,@PriorityLocation)", con);
-                com.Parameters.AddWithValue("@Department", textBox2.Text.Trim());
-                com.Parameters.AddWithValue("@School", comboBox2.Text.Trim());
-                com.Parameters.AddWithValue("@PriorityLocation", comboBox1.Text.Trim());
-                int x = com.ExecuteNonQuery();
-                if (x >= 0)
+                var db = new TimeDbContext(); 
+                Department d = new Department
                 {
-                    MessageBox.Show(this, "Department saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadDepartments();
-                }
-                else
-                {
-                    MessageBox.Show(this, "Failed to add the Department!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                    SchoolGuid=Guid.NewGuid().ToString(),
+                    DepartmentGuid = Guid.NewGuid().ToString(),
+                    DepartmentName = comboBox2.Text+"-"+textBox2.Text, 
+                    CreationDate = Program.CurrentDate()
+                };
+
+                db.Departments.Add(d);
+                int x = db.SaveChanges();
+                MessageBox.Show(this, "Department saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadDepartments();
             }
             catch (Exception ex)
             {
@@ -112,22 +119,19 @@ namespace QADTimeTabler.Administration
             LoadDepartments();
 
         }
-
         void LoadDepartments()
         {
             try
             {
-                Gridview_Departments.Rows.Clear();
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("select * from departments", con);
 
-                MySqlDataReader Dr = com.ExecuteReader();
-                if (Dr.HasRows)
+                Gridview_Departments.Rows.Clear();
+                var db = new TimeDbContext();
+                var list = db.Departments.AsNoTracking();
+                if (list.Count()>0)
                 {
-                    while (Dr.Read())
+                    foreach (var x in list)
                     {
-                        Gridview_Departments.Rows.Add(Dr["Department"].ToString(), Dr["School"].ToString(),Dr["PriorityLocation"].ToString());
+                        Gridview_Departments.Rows.Add(x.DepartmentName, x.DepartmentName);
                     }
                 }
                 else
@@ -140,29 +144,24 @@ namespace QADTimeTabler.Administration
                 MessageBox.Show(this, ex.Message, "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void Btn_RefreshSchools_Click(object sender, EventArgs e)
         {
             LoadSchools();
         }
-
         void LoadSchools()
         {
             try
             {
                 GridView_Schools.Rows.Clear();
-                MySqlConnection con = new MySqlConnection(db.DbConnectionString());
-                con.Open();
-                MySqlCommand com = new MySqlCommand("select * from schools", con);
-
-                MySqlDataReader Dr = com.ExecuteReader();
-                if (Dr.HasRows)
+                var db = new TimeDbContext();
+                var list = db.Schools.AsNoTracking();
+                if (list.Count() > 0)
                 {
-                    while (Dr.Read())
+                    foreach (var x in list)
                     {
-                        GridView_Schools.Rows.Add(Dr["Code"].ToString(), Dr["SchoolName"].ToString());
+                        GridView_Schools.Rows.Add(x.SchoolCode, x.SchoolName);
                     }
-                }
+                } 
                 else
                 {
                     MessageBox.Show(this, "No Schools found!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);

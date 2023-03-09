@@ -10,6 +10,7 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "QADTimeTabler.TimeDbContext";
         }
 
         protected override void Seed(QADTimeTabler.TimeDbContext context)

@@ -17,19 +17,10 @@ namespace QADTimeTabler
         /// </summary>
         [STAThread]
         static void Main()
-        {
-            DialogResult Canstart = DialogResult.None;
+        { 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            using (Preloader PreloaderF = new Preloader())
-            {
-                Canstart = PreloaderF.ShowDialog();
-
-            }
-            if (Canstart == DialogResult.OK)
-            {
-                Application.Run(new Dashboard());
-            } 
+            Application.Run(new Dashboard());
         }
 
 

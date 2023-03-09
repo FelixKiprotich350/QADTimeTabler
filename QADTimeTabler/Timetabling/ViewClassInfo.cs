@@ -8,18 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace QADTimeTabler
+namespace QADTimeTabler.Timetabling
 {
-    public partial class AboutSoftware : Form
+    public partial class ViewClassInfo : Form
     {
-        public AboutSoftware()
+        public string Classcode = "";
+        public ViewClassInfo(string classcode)
         {
             InitializeComponent();
+            Classcode = classcode;
         }
 
-        private void Btn_Ok_Click(object sender, EventArgs e)
+        private void ViewClassInfo_Load(object sender, EventArgs e)
         {
-            this.Close();
+
         }
     }
 }

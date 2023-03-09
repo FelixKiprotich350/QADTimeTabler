@@ -32,6 +32,10 @@ namespace QADTimeTabler.Lecturers
             {
                 if (textBox1.Text.Trim() == "")
                 {
+                    MessageBox.Show(this, "Enter the Lecturer's PF Number!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                } if (textBox2.Text.Trim() == "")
+                {
                     MessageBox.Show(this, "Enter the Lecturer's Full Name!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -52,9 +56,10 @@ namespace QADTimeTabler.Lecturers
                     preference += i.Text + ",";
                 }
                 Lecturer l = new Lecturer()
-                { LecturerGuid = Guid.NewGuid().ToString(),
-                    LecturerID = DateTime.Now.ToString("ffff"),
-                    LecFullName = textBox1.Text.Trim(),
+                { 
+                    LecGuid = Guid.NewGuid().ToString(),
+                    LecPFNo = textBox1.Text.Trim(),
+                    LecFullName = textBox2.Text.Trim(),
                     Department = comboBox2.Text.Trim(),
                     Preferences = preference
                 };
@@ -95,7 +100,7 @@ namespace QADTimeTabler.Lecturers
                 {
                     foreach (var x in items)
                     {
-                        DataGridView_Lecturers.Rows.Add(x.LecturerID, x.LecFullName, x.Department, x.Preferences);
+                        DataGridView_Lecturers.Rows.Add(x.LecPFNo, x.LecFullName, x.Department, x.Preferences);
                     }
                 }
                 else
@@ -107,6 +112,11 @@ namespace QADTimeTabler.Lecturers
             {
                 MessageBox.Show(this, ex.Message, "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DataGridView_Lecturers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show(e.RowIndex.ToString(), e.ColumnIndex.ToString());
         }
     }
 }

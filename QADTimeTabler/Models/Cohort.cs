@@ -15,6 +15,7 @@ namespace QADTimeTabler.Models
         public int GroupID { get; set; }
         [Required]
         [MaxLength(200)]
+        [Index(IsUnique =true)]
         public string ShortCode { get; set; }
         [Required]
         [MaxLength(500)]

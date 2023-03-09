@@ -126,7 +126,7 @@ namespace QADTimeTabler.LecHalls
                     FullName = comboBox2.Text.Trim() + "-" + textBox1.Text,
                     Location = comboBox2.Text.Trim(),
                     Nature = comboBox1.Text.Trim(),
-                    Capacity = (int)(numericUpDown1.Value),
+                    TeachingCapacity = (int)(numericUpDown1.Value),
 
                 };
                 db.LectureHalls.Add(lh);
@@ -156,7 +156,7 @@ namespace QADTimeTabler.LecHalls
                 {
                     foreach (var x in items)
                     {
-                        DataGridView_LecHalls.Rows.Add(x.FullName, x.ShortName, x.Location, x.Nature, x.Capacity);
+                        DataGridView_LecHalls.Rows.Add(x.FullName, x.ShortName, x.Location, x.Nature, x.TeachingCapacity);
 
                     }
                 }

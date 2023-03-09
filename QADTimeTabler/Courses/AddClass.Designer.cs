@@ -32,6 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.Gridview_Cohorts = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -42,14 +44,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.CheckBox_Subclasses = new System.Windows.Forms.CheckBox();
             this.DataGridView_subgroups = new System.Windows.Forms.DataGridView();
-            this.Btn_SaveSubClasses = new System.Windows.Forms.Button();
-            this.Btn_SaveDefault = new System.Windows.Forms.Button();
-            this.GroupBox_MultipleGroups = new System.Windows.Forms.GroupBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Btn_SaveDefault = new System.Windows.Forms.Button();
+            this.GroupBox_MultipleGroups = new System.Windows.Forms.GroupBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Gridview_Cohorts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView_subgroups)).BeginInit();
             this.GroupBox_MultipleGroups.SuspendLayout();
@@ -101,6 +102,18 @@
             this.Gridview_Cohorts.RowHeadersVisible = false;
             this.Gridview_Cohorts.Size = new System.Drawing.Size(154, 151);
             this.Gridview_Cohorts.TabIndex = 3;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Group";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Total";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // textBox2
             // 
@@ -175,7 +188,7 @@
             // CheckBox_Subclasses
             // 
             this.CheckBox_Subclasses.AutoSize = true;
-            this.CheckBox_Subclasses.Location = new System.Drawing.Point(184, 196);
+            this.CheckBox_Subclasses.Location = new System.Drawing.Point(341, 183);
             this.CheckBox_Subclasses.Name = "CheckBox_Subclasses";
             this.CheckBox_Subclasses.Size = new System.Drawing.Size(113, 24);
             this.CheckBox_Subclasses.TabIndex = 13;
@@ -201,52 +214,8 @@
             this.DataGridView_subgroups.Name = "DataGridView_subgroups";
             this.DataGridView_subgroups.ReadOnly = true;
             this.DataGridView_subgroups.RowHeadersVisible = false;
-            this.DataGridView_subgroups.Size = new System.Drawing.Size(349, 138);
+            this.DataGridView_subgroups.Size = new System.Drawing.Size(462, 138);
             this.DataGridView_subgroups.TabIndex = 14;
-            // 
-            // Btn_SaveSubClasses
-            // 
-            this.Btn_SaveSubClasses.Location = new System.Drawing.Point(373, 66);
-            this.Btn_SaveSubClasses.Name = "Btn_SaveSubClasses";
-            this.Btn_SaveSubClasses.Size = new System.Drawing.Size(70, 28);
-            this.Btn_SaveSubClasses.TabIndex = 15;
-            this.Btn_SaveSubClasses.Text = "Save";
-            this.Btn_SaveSubClasses.UseVisualStyleBackColor = true;
-            // 
-            // Btn_SaveDefault
-            // 
-            this.Btn_SaveDefault.Location = new System.Drawing.Point(373, 192);
-            this.Btn_SaveDefault.Name = "Btn_SaveDefault";
-            this.Btn_SaveDefault.Size = new System.Drawing.Size(70, 28);
-            this.Btn_SaveDefault.TabIndex = 16;
-            this.Btn_SaveDefault.Text = "Save";
-            this.Btn_SaveDefault.UseVisualStyleBackColor = true;
-            this.Btn_SaveDefault.Click += new System.EventHandler(this.Btn_SaveDefault_Click);
-            // 
-            // GroupBox_MultipleGroups
-            // 
-            this.GroupBox_MultipleGroups.Controls.Add(this.DataGridView_subgroups);
-            this.GroupBox_MultipleGroups.Controls.Add(this.Btn_SaveSubClasses);
-            this.GroupBox_MultipleGroups.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.GroupBox_MultipleGroups.Enabled = false;
-            this.GroupBox_MultipleGroups.Location = new System.Drawing.Point(0, 246);
-            this.GroupBox_MultipleGroups.Name = "GroupBox_MultipleGroups";
-            this.GroupBox_MultipleGroups.Size = new System.Drawing.Size(477, 163);
-            this.GroupBox_MultipleGroups.TabIndex = 17;
-            this.GroupBox_MultipleGroups.TabStop = false;
-            this.GroupBox_MultipleGroups.Text = "Multiple Groups";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Group";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Total";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -266,10 +235,50 @@
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
+            // Btn_SaveDefault
+            // 
+            this.Btn_SaveDefault.Location = new System.Drawing.Point(341, 215);
+            this.Btn_SaveDefault.Name = "Btn_SaveDefault";
+            this.Btn_SaveDefault.Size = new System.Drawing.Size(102, 28);
+            this.Btn_SaveDefault.TabIndex = 16;
+            this.Btn_SaveDefault.Text = "Save";
+            this.Btn_SaveDefault.UseVisualStyleBackColor = true;
+            this.Btn_SaveDefault.Click += new System.EventHandler(this.Btn_SaveDefault_Click);
+            // 
+            // GroupBox_MultipleGroups
+            // 
+            this.GroupBox_MultipleGroups.Controls.Add(this.DataGridView_subgroups);
+            this.GroupBox_MultipleGroups.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.GroupBox_MultipleGroups.Enabled = false;
+            this.GroupBox_MultipleGroups.Location = new System.Drawing.Point(0, 246);
+            this.GroupBox_MultipleGroups.Name = "GroupBox_MultipleGroups";
+            this.GroupBox_MultipleGroups.Size = new System.Drawing.Size(477, 163);
+            this.GroupBox_MultipleGroups.TabIndex = 17;
+            this.GroupBox_MultipleGroups.TabStop = false;
+            this.GroupBox_MultipleGroups.Text = "Multiple Groups";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(184, 215);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(100, 26);
+            this.textBox6.TabIndex = 18;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(180, 189);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(103, 20);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Average Size";
+            // 
             // AddClass
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(477, 409);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.GroupBox_MultipleGroups);
             this.Controls.Add(this.Btn_SaveDefault);
             this.Controls.Add(this.CheckBox_Subclasses);
@@ -317,7 +326,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox CheckBox_Subclasses;
         private System.Windows.Forms.DataGridView DataGridView_subgroups;
-        private System.Windows.Forms.Button Btn_SaveSubClasses;
         private System.Windows.Forms.Button Btn_SaveDefault;
         private System.Windows.Forms.GroupBox GroupBox_MultipleGroups;
         public System.Windows.Forms.TextBox textBox4;
@@ -327,5 +335,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -121,6 +121,12 @@ namespace QADTimeTabler.Cohorts
             LoadCohorts();
         }
 
-     
+        private void DataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string code = dataGridView2.SelectedRows[0].Cells[0].Value.ToString();
+            EditCohort ec = new EditCohort(code);
+            ec.ShowDialog();
+            LoadCohorts();
+        }
     }
 }

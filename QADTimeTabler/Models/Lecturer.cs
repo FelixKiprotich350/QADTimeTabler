@@ -11,13 +11,16 @@ namespace QADTimeTabler.Models
     public class Lecturer
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int AutoID { get; set; }
+        [Required]
+        [MaxLength(100)] 
+        [Index(IsUnique = true)]
+        public string LecGuid { get; set; }
         [Required]
         [MaxLength(100)]
-        public string LecturerGuid { get; set; }    
-        [Required]
-        [MaxLength(100)]
-        [Index(IsUnique =true)]
-        public string LecturerID { get; set; }
+        [Index(IsUnique = true)]
+        public string LecPFNo { get; set; }
         [Required]
         [MaxLength(200)]
         public string LecFullName { get; set; }

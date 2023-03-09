@@ -37,7 +37,7 @@ namespace QADTimeTabler.Courses
                 {
                    foreach(var x in items)
                     {
-                        DataGridView_Lecturers.Rows.Add(x.LecturerID, x.LecFullName, x.Department);
+                        DataGridView_Lecturers.Rows.Add(x.LecPFNo, x.LecFullName, x.Department);
                     }
                 }
                 else

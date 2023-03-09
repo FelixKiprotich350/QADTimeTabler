@@ -15,11 +15,12 @@ namespace QADTimeTabler.Courses
     public partial class SelectAddCohort : Form
     {
         readonly DatabaseLogic db = new DatabaseLogic();
-        readonly ManageCourses MC = null;
-        public SelectAddCohort(ManageCourses m)
+        public List<string> Selecteditems = null;
+        public SelectAddCohort()
         {
-            InitializeComponent(); 
-            MC = m;
+            InitializeComponent();
+             Selecteditems= new List<string>();
+
         }
 
         private void Btn_ViewAll_Click_1(object sender, EventArgs e)
@@ -54,11 +55,19 @@ namespace QADTimeTabler.Courses
 
         private void DataGridView_CohortsList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            foreach (DataGridViewRow r in DataGridView_CohortsList.SelectedRows)
+            try
             {
-                MC.GridView_Cohorts.Rows.Add(r.Cells[1].Value.ToString());
+                foreach (DataGridViewRow r in DataGridView_CohortsList.SelectedRows)
+                {
+                    Selecteditems.Add(r.Cells[1].Value.ToString());
+                }
+                DialogResult = DialogResult.OK;
             }
-            this.Close();
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Message Box",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                DialogResult = DialogResult.No;
+            }
         }
 
         private void SelectAddCohort_Load(object sender, EventArgs e)

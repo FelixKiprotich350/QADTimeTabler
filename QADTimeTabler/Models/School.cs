@@ -15,6 +15,7 @@ namespace QADTimeTabler.Models
         public string SchoolGuid { get; set; }
         [Required]
         [MaxLength(200)]
+        [Index(IsUnique =true)]
         public string SchoolCode { get; set; }
         [Required]
         [MaxLength(500)]

@@ -76,7 +76,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(262, 498);
+            this.groupBox1.Size = new System.Drawing.Size(268, 747);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add cohort";
@@ -213,9 +213,9 @@
             this.groupBox2.Controls.Add(this.dataGridView2);
             this.groupBox2.Controls.Add(this.panel1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(262, 0);
+            this.groupBox2.Location = new System.Drawing.Point(268, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(905, 498);
+            this.groupBox2.Size = new System.Drawing.Size(1102, 747);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cohorts List";
@@ -242,8 +242,9 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(899, 426);
+            this.dataGridView2.Size = new System.Drawing.Size(1096, 675);
             this.dataGridView2.TabIndex = 8;
+            this.dataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView2_CellDoubleClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -281,7 +282,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 22);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(899, 47);
+            this.panel1.Size = new System.Drawing.Size(1096, 47);
             this.panel1.TabIndex = 0;
             // 
             // Btn_ViewAll
@@ -297,7 +298,7 @@
             // ManageCohorts
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1167, 498);
+            this.ClientSize = new System.Drawing.Size(1370, 747);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.DoubleBuffered = true;

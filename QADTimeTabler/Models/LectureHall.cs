@@ -23,7 +23,9 @@ namespace QADTimeTabler.Models
         [MaxLength(200)]
         public string Location { get; set; }    
         [Required]
-        public int Capacity { get; set; }
+        public int TeachingCapacity { get; set; } 
+        [Required]
+        public int ExaminationCapacity { get; set; }
         [Required]
         [MaxLength(100)]
         public string Nature { get; set; }    

@@ -16,7 +16,7 @@ namespace QADTimeTabler.Courses
     public partial class AddClass : Form
     {
         readonly DatabaseLogic db = new DatabaseLogic();
-        readonly DataGridViewRow R;
+        readonly DataGridViewRow R; 
         public AddClass(DataGridViewRow r)
         {
             
@@ -32,7 +32,16 @@ namespace QADTimeTabler.Courses
             string[] coho = R.Cells[4].Value.ToString().Split(',').Where(m=>!string.IsNullOrEmpty(m)).ToArray();
             foreach (string c in coho)
             {
-                Gridview_Cohorts.Rows.Add(c);
+
+                var coh = ModelsLists.CohortsList.Where(k => k.ShortCode == c).FirstOrDefault();
+                if (coh != null)
+                {
+                    Gridview_Cohorts.Rows.Add(c, coh.TotalCount); 
+                }
+                else
+                { 
+                    Gridview_Cohorts.Rows.Add(c, 0);
+                }
             }
         }
 
@@ -55,25 +64,33 @@ namespace QADTimeTabler.Courses
                     MessageBox.Show(this, "The course does not contain any group of students!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                string _Cohorts = "";
-                foreach (DataGridViewRow r in Gridview_Cohorts.Rows)
+                if (!CheckBox_Subclasses.Checked) 
                 {
-                    _Cohorts += r.Cells[0].Value.ToString() + ",";
+                    string _Cohorts = "";
+                    foreach (DataGridViewRow r in Gridview_Cohorts.Rows)
+                    {
+                        _Cohorts += r.Cells[0].Value.ToString() + ",";
+                    }
+                    var db = new TimeDbContext();
+                    ClassObject pc = new ClassObject()
+                    {
+                        ClassGuid = Guid.NewGuid().ToString(),
+                        CourseCode = textBox2.Text.Trim(),
+                        Lecturer = textBox5.Text.Trim(),
+                        ParentCourse = textBox1.Text.Trim(),
+                        //Cohorts = _Cohorts,
+                        Cohorts = _Cohorts,
+                        IsChild = false
+                    };
+                    db.ClassObjects.Add(pc);
+                    db.SaveChanges();
+                    MessageBox.Show(this, "Class saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
-                var db = new TimeDbContext();
-                ClassObject pc = new ClassObject()
+                else
                 {
-                    ClassGuid = Guid.NewGuid().ToString(),
-                    CourseCode = textBox2.Text.Trim(),
-                    Lecturer = textBox5.Text.Trim(),
-                    ParentCourse = textBox1.Text.Trim(),
-                    //Cohorts = _Cohorts,
-                    Cohorts = _Cohorts,
-                    IsChild = false
-                };
-                db.ClassObjects.Add(pc);
-                db.SaveChanges();
-                MessageBox.Show(this, "Class saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SaveMultiple();
+                }
                 this.Close();
             }
             catch (Exception ex)
@@ -92,24 +109,61 @@ namespace QADTimeTabler.Courses
         {
             if (CheckBox_Subclasses.Checked)
             {
-                GroupBox_MultipleGroups.Enabled = true;
-                Btn_SaveDefault.Enabled = false;
-                DataGridView_subgroups.Rows.Clear();
-                BreakDownClass();
+                if (int.TryParse(textBox6.Text,out int averageclass))
+                {
+                    GroupBox_MultipleGroups.Enabled = true;
+                    DataGridView_subgroups.Rows.Clear();
+                    BreakDownClass(averageclass);
+                } 
+                else
+                {
+                    MessageBox.Show("Enter the class Size!", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    CheckBox_Subclasses.Checked = false;
+                } 
+               
             }
             else
             {
-                GroupBox_MultipleGroups.Enabled = false;
-                Btn_SaveDefault.Enabled = true;
+                GroupBox_MultipleGroups.Enabled = false; 
                 DataGridView_subgroups.Rows.Clear();
+                textBox6.Text = "";
             }
         }
-
-        void BreakDownClass()
+        void BreakDownClass(int average)
         {
 
         }
 
-    
+        void SaveMultiple()
+        {
+            try
+            {
+                var db = new TimeDbContext();
+                foreach (var x in DataGridView_subgroups.Rows)
+                {
+                    string _Cohorts = "";
+                    ClassObject pc = new ClassObject()
+                    {
+                        ClassGuid = Guid.NewGuid().ToString(),
+                        CourseCode = textBox2.Text.Trim(),
+                        Lecturer = textBox5.Text.Trim(),
+                        ParentCourse = textBox1.Text.Trim(),
+                        //Cohorts = _Cohorts, 
+                        IsChild = false
+                    };
+                   // db.ClassObjects.Add(pc);
+                   // db.SaveChanges();
+
+                }
+                MessageBox.Show(this, "Class saved Successfully.", "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, "Message Box", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+       
+         
     }
 }

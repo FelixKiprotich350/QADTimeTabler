@@ -31,6 +31,7 @@ namespace QADTimeTabler
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
+            //ShowForm(new automation());
         }
 
         private void Dashboard_Shown(object sender, EventArgs e)
@@ -117,7 +118,7 @@ namespace QADTimeTabler
 
         private void DatabaseManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowForm(new DataManager());
+             
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)

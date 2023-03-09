@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -101,7 +102,10 @@ namespace QADTimeTabler.HelperClasses
             {
                 if (ModelsLists.LectureHalls.Count > 0)
                 {
-                    List<LectureHall> l_list = ModelsLists.LectureHalls.Where(k=>k.Capacity>=pc.TotalStudents).ToList();
+                    //filter by capacity
+                    List<LectureHall> l_list = ModelsLists.LectureHalls.Where(k=>k.TeachingCapacity>=pc.TotalStudents).ToList();
+                    //filter by availability
+                     
                     //check for concurrency
                     while (l_list.Count()>0)
                     {
@@ -133,10 +137,9 @@ namespace QADTimeTabler.HelperClasses
             bool final = false;
             try
             {
-                if (ModelsLists.PostClasses.Where(p => p.Timeslot == T & p.LectureHall == lh).Count() > 0)
+                if (ModelsLists.PostClasses.Where(p => p.Timeslot.Day == T.Day && p.Timeslot.Session == T.Session && p.LectureHall.FullName.ToUpper() == lh.FullName.ToUpper()).Count() > 0)
                 {
-                    final = false;
-                    return final;
+                    final = false; 
                 }
                 else
                 {
@@ -147,6 +150,7 @@ namespace QADTimeTabler.HelperClasses
             {
                 final = false;
             }
+            
             return final;
         }
     }

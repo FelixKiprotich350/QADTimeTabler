@@ -104,8 +104,26 @@ namespace QADTimeTabler.Courses
        
         private void Btn_SelectAdd_Click(object sender, EventArgs e)
         {
-            SelectAddCohort s = new SelectAddCohort(this);
-            s.ShowDialog();
+            SelectAddCohort s = new SelectAddCohort();
+            if (s.ShowDialog()==DialogResult.OK)
+            {
+                foreach(var x in s.Selecteditems)
+                {
+                    bool itempresent = false;
+                    foreach (DataGridViewRow r in GridView_Cohorts.Rows)
+                    {
+                        if (r.Cells[0].Value.ToString().ToLower() == x.ToLower())
+                        {
+                            itempresent = true;
+                            break;
+                        }
+                    }
+                    if (!itempresent)
+                    {
+                        GridView_Cohorts.Rows.Add(x);
+                    }
+                }
+            }
         }
 
         private void Btn_Reset_Click(object sender, EventArgs e)
@@ -115,6 +133,13 @@ namespace QADTimeTabler.Courses
             textBox2.Text = "";
             comboBox1.Text = "";
             comboBox2.Text = "";
+        }
+
+        private void DataGridView_CourseList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string code = DataGridView_CourseList.SelectedRows[0].Cells[0].Value.ToString();
+            EditCourse ec = new EditCourse(code);
+            ec.ShowDialog();
         }
     }
 }

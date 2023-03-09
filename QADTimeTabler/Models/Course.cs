@@ -27,8 +27,7 @@ namespace QADTimeTabler.Models
         [Required]
         [MaxLength(200)]
         public string Department { get; set; }
-        [Required]
-        [MaxLength(200)]
+        [Required] 
         public string Cohorts { get; set; }
 
     }

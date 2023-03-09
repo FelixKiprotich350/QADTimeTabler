@@ -17,11 +17,8 @@ namespace QADTimeTabler.Models
         [MaxLength(200)]
         public string SchoolGuid { get; set; }
         [Required]
-        [MaxLength(200)]
-        [Index(IsUnique = true)]
-        public string DepartmentCode { get; set; }
-        [Required]
         [MaxLength(500)]
+        [Index(IsUnique = true)]
         public string DepartmentName { get; set; } 
         [Required]
         public DateTime CreationDate { get; set; }

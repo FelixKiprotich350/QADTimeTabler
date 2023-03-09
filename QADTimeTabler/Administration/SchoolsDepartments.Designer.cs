@@ -45,12 +45,9 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Btn_SaveDepartment = new System.Windows.Forms.Button();
             this.Gridview_Departments = new System.Windows.Forms.DataGridView();
-            this.Btn_RefreshDepartments = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Btn_RefreshDepartments = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView_Schools)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -163,15 +160,15 @@
             // textBox2
             // 
             this.textBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox2.Location = new System.Drawing.Point(68, 68);
+            this.textBox2.Location = new System.Drawing.Point(68, 58);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(240, 26);
+            this.textBox2.Size = new System.Drawing.Size(280, 26);
             this.textBox2.TabIndex = 12;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(64, 110);
+            this.label3.Location = new System.Drawing.Point(64, 111);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 20);
             this.label3.TabIndex = 11;
@@ -181,15 +178,19 @@
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(68, 133);
+            this.comboBox2.Items.AddRange(new object[] {
+            "USER",
+            "ADMIN",
+            "HOD"});
+            this.comboBox2.Location = new System.Drawing.Point(68, 134);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(202, 28);
+            this.comboBox2.Size = new System.Drawing.Size(280, 28);
             this.comboBox2.TabIndex = 10;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 45);
+            this.label1.Location = new System.Drawing.Point(64, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(140, 20);
             this.label1.TabIndex = 9;
@@ -197,8 +198,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Controls.Add(this.Btn_SaveDepartment);
             this.groupBox2.Controls.Add(this.Gridview_Departments);
             this.groupBox2.Controls.Add(this.textBox2);
@@ -209,14 +208,14 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox2.Location = new System.Drawing.Point(428, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(475, 498);
+            this.groupBox2.Size = new System.Drawing.Size(418, 498);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Departments";
             // 
             // Btn_SaveDepartment
             // 
-            this.Btn_SaveDepartment.Location = new System.Drawing.Point(82, 181);
+            this.Btn_SaveDepartment.Location = new System.Drawing.Point(102, 181);
             this.Btn_SaveDepartment.Name = "Btn_SaveDepartment";
             this.Btn_SaveDepartment.Size = new System.Drawing.Size(83, 29);
             this.Btn_SaveDepartment.TabIndex = 14;
@@ -233,44 +232,15 @@
             this.Gridview_Departments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Gridview_Departments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.Column1});
+            this.dataGridViewTextBoxColumn2});
             this.Gridview_Departments.EnableHeadersVisualStyles = false;
             this.Gridview_Departments.Location = new System.Drawing.Point(54, 232);
             this.Gridview_Departments.Name = "Gridview_Departments";
             this.Gridview_Departments.ReadOnly = true;
             this.Gridview_Departments.RowHeadersVisible = false;
             this.Gridview_Departments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Gridview_Departments.Size = new System.Drawing.Size(385, 233);
+            this.Gridview_Departments.Size = new System.Drawing.Size(294, 233);
             this.Gridview_Departments.TabIndex = 13;
-            // 
-            // Btn_RefreshDepartments
-            // 
-            this.Btn_RefreshDepartments.Location = new System.Drawing.Point(196, 181);
-            this.Btn_RefreshDepartments.Name = "Btn_RefreshDepartments";
-            this.Btn_RefreshDepartments.Size = new System.Drawing.Size(83, 29);
-            this.Btn_RefreshDepartments.TabIndex = 9;
-            this.Btn_RefreshDepartments.Text = "Refresh";
-            this.Btn_RefreshDepartments.UseVisualStyleBackColor = true;
-            this.Btn_RefreshDepartments.Click += new System.EventHandler(this.Btn_RefreshDepartments_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(281, 110);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 20);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Prority";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(281, 133);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(158, 28);
-            this.comboBox1.TabIndex = 15;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -284,11 +254,15 @@
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // Column1
+            // Btn_RefreshDepartments
             // 
-            this.Column1.HeaderText = "Priority";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.Btn_RefreshDepartments.Location = new System.Drawing.Point(216, 181);
+            this.Btn_RefreshDepartments.Name = "Btn_RefreshDepartments";
+            this.Btn_RefreshDepartments.Size = new System.Drawing.Size(83, 29);
+            this.Btn_RefreshDepartments.TabIndex = 9;
+            this.Btn_RefreshDepartments.Text = "Refresh";
+            this.Btn_RefreshDepartments.UseVisualStyleBackColor = true;
+            this.Btn_RefreshDepartments.Click += new System.EventHandler(this.Btn_RefreshDepartments_Click);
             // 
             // SchoolsDepartments
             // 
@@ -328,14 +302,11 @@
         private System.Windows.Forms.DataGridView GridView_Schools;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.DataGridView Gridview_Departments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Button Btn_RefreshSchools;
         private System.Windows.Forms.Button Btn_SaveDepartment;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }
